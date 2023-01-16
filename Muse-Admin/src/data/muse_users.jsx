@@ -1,28 +1,8 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { date } from "yup/lib/locale";
 
-export default function Users() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    /* axios.get("http://127.0.0.1:8000/api/users", {
-      mode: "no-cors"
-    }).then((data) => {
-      console.log(data);
-      setUsers(data?.data["hydra:member"]);
-
-    }); */
-    fetch("http://127.0.0.1:8000/api/users",{
-      mode: "no-cors"
-    }).then((data) => {
-      data.json()
-        .then(json => {
-          console.log(json);
-          setUsers(json["hydra:member"]);
-        })
-    });
-  }, []);
-
+export default async function Users() {
+  const users = (await (await fetch("https://127.0.0.1:8000/api/users")).json())["hydra:member"];
 
   return (
     users.map((item, i) => (
@@ -41,9 +21,9 @@ export default function Users() {
         address: item?.address,
         agreeTerms: item?.agreeTerms,
       }
-      // <div key={i}> 
-      // <p>{item?.userName}</p></div>
     )
     )
   )
 };
+    // <div key={i}>
+    // <p>{item?.userName}</p></div>
