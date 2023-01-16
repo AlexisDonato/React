@@ -4,6 +4,15 @@ import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
+
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import WarehouseIcon from '@mui/icons-material/Warehouse';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import DiscountIcon from '@mui/icons-material/Discount';
+
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
@@ -130,26 +139,61 @@ const Sidebar = () => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Data
+              CRUDs
             </Typography>
             <Item
-              title="Manage Team"
-              to="/team"
+              title="Users"
+              to="/users"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Contacts Information"
-              to="/contacts"
-              icon={<ContactsOutlinedIcon />}
+              title="Addresses"
+              to="/addresses"
+              icon={<LocationOnIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Invoices Balances"
-              to="/invoices"
-              icon={<ReceiptOutlinedIcon />}
+              title="Suppliers"
+              to="/suppliers"
+              icon={<WarehouseIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Categories"
+              to="/categories"
+              icon={<FormatListBulletedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Products"
+              to="/products"
+              icon={<FormatListNumberedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Order Details"
+              to="/orderDetails"
+              icon={<ShoppingCartCheckoutIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Carts / Orders"
+              to="/carts"
+              icon={<ShoppingCartIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Coupons"
+              to="/coupons"
+              icon={<DiscountIcon />}
               selected={selected}
               setSelected={setSelected}
             />

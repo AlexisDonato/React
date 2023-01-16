@@ -3,9 +3,16 @@ import { Routes, Route } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard";
-import Team from "./scenes/team";
-import Invoices from "./scenes/invoices";
-import Contacts from "./scenes/contacts";
+
+import Users from "./scenes/users";
+import Addresses from "./scenes/addresses";
+import Suppliers from "./scenes/suppliers";
+import Categories from "./scenes/categories";
+import Products from "./scenes/products";
+import OrderDetails from "./scenes/orderDetails";
+import Carts from "./scenes/carts";
+import Coupons from "./scenes/coupons";
+
 import Bar from "./scenes/bar";
 import Form from "./scenes/form";
 import Line from "./scenes/line";
@@ -30,9 +37,16 @@ function App() {
             <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
               <Route path="/" element={<Dashboard />} />
-              <Route path="/team" element={<Team />} />
-              <Route path="/contacts" element={<Contacts />} />
-              <Route path="/invoices" element={<Invoices />} />
+
+              <Route path="/users" element={<Users />} />
+              <Route path="/addresses" element={<Addresses />} />
+              <Route path="/suppliers" element={<Suppliers />} />
+              <Route path="/categories" element={<Categories />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/orderDetails" element={<OrderDetails />} />
+              <Route path="/carts" element={<Carts />} />
+              <Route path="/coupons" element={<Coupons />} />
+
               <Route path="/form" element={<Form />} />
               <Route path="/bar" element={<Bar />} />
               <Route path="/pie" element={<Pie />} />
