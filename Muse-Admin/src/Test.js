@@ -1,12 +1,16 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import axios from "axios";
 
 function Test() {
 
   useEffect(()=>{
-    axios.get("http://localhost:8000/api/users").then((response)=>{
-      console.log(response)
+    axios.get("/api/users", {
+      headers: {
+        "Accept": "application/json"
+      }
+    }).then((response)=>{
+      console.log(response.data)
     })
   }, [])
 

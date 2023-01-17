@@ -3,6 +3,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import DeleteIcon from '@mui/icons-material/DeleteOutlineRounded';
 import CreateIcon from '@mui/icons-material/Create';
+import SaveIcon from '@mui/icons-material/Save';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useTheme } from "@mui/material";
 import { useState, useEffect } from "react";
@@ -19,15 +20,15 @@ const UsersIndex = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     Users().then(data => setUsers(data));
 
   }, []);
 
 
   const columns = [
-    { field: "id", headerName: "ID" },
+    { field: "id", headerName: "ID", flex: 0.8, },
     { field: "name", headerName: "First Name", editable: true },
     {
       field: "lastName",
@@ -37,6 +38,7 @@ const UsersIndex = () => {
     {
       field: "email",
       headerName: "Email",
+      minWidth: 150,
       editable: true,
       // headerAlign: "left",
       // align: "left",
@@ -122,15 +124,28 @@ const UsersIndex = () => {
     {
       field: "actions",
       headerName: "",
+      renderCell: () => (
+        <Box>
+          <IconButton title="Save" aria-label="delete">
+            <SaveIcon />
+          </IconButton>
+          <IconButton title="Edit" aria-label="edit">
+            <CreateIcon />
+          </IconButton>
+          <IconButton title="Delete" aria-label="new">
+            <DeleteIcon />
+          </IconButton>
+        </Box>
+      )
     },
   ];
 
-    return (
-      <Box m="20px">
-        <Header title="Users Index" subtitle="List of all the users" />
-        <Box height="75vh"
-          m="40px 0 0 0"
-          sx={{
+  return (
+    <Box m="20px">
+      <Header title="Users Index" subtitle="List of all the users" />
+      <Box height="75vh"
+        m="40px 0 0 0"
+        sx={{
           "& .MuiDataGrid-root": {
             border: "none",
           },
@@ -159,27 +174,17 @@ const UsersIndex = () => {
           },
         }}
       >
+        <IconButton title="Add new" aria-label="new">
+          <AddCircleOutlineIcon />Add New
+        </IconButton>
         <DataGrid
           rows={users}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
         />
-
-          <IconButton aria-label="delete">
-            <DeleteIcon />
-          </IconButton>
-          <IconButton aria-label="edit">
-            <CreateIcon />
-          </IconButton>
-          <IconButton aria-label="new">
-            <AddCircleOutlineIcon />
-          </IconButton>
       </Box>
     </Box>
+  );
+};
 
-
-
-    );
-  };
-  
-  export default UsersIndex;
+export default UsersIndex;

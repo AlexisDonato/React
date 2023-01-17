@@ -1,10 +1,22 @@
-
-// import axios from "axios";
+import { useEffect } from "react";
+import axios from "axios";
 // import { date } from "yup/lib/locale";
 
 export default async function Users() {
-  const users = (await (await fetch("https://127.0.0.1:8000/api/users")).json())["hydra:member"];
-  console.log(users);
+  // With function 'fetch'
+  // const users = (await (await fetch("https://127.0.0.1:8000/api/users")).json())["hydra:member"];
+  // console.log(users);
+
+  // With 'axios' ("proxy" : "http://localhost:8000" is needed to be written in 'package.json)
+  const users = useEffect(() => {
+    axios.get("/api/users", {
+      headers: {
+        "Accept": "application/json"
+      }
+    }).then((response) => {
+      console.log(response.data)
+    })
+  }, [])
   return (
     users.map((item) => (
       {
@@ -24,11 +36,9 @@ export default async function Users() {
         proDuns: item?.proDuns,
         address: item?.address,
         agreeTerms: item?.agreeTerms,
-        verified: item?.verified,  
+        verified: item?.verified,
       }
     )
-    ) 
+    )
   )
 };
-    // <div key={i}>
-    // <p>{item?.userName}</p></div>
