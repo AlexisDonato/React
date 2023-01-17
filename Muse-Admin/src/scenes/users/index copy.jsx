@@ -24,6 +24,8 @@ import Header from "../../components/Header";
 import Users from "../../data/muse_users";
 import { mockDataContacts } from "../../data/mockData";
 
+import { useState, useEffect } from "react";
+
 
 function EditToolbar(props) {
   const { setRows, setRowModesModel } = props;
@@ -52,8 +54,17 @@ EditToolbar.propTypes = {
 };
 
 export default function FullFeaturedCrudGrid() {
-  const [rows, setRows] = React.useState(mockDataContacts);
+  const [rows, setRows] = React.useState(users);
   const [rowModesModel, setRowModesModel] = React.useState({});
+  const [users, setUsers] = useState([]);
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
+  
+  useEffect(()=>{
+    Users().then(data => setUsers(data));
+
+  }, []);
 
   const handleRowEditStart = (params, event) => {
     event.defaultMuiPrevented = true;
@@ -93,8 +104,6 @@ export default function FullFeaturedCrudGrid() {
     return updatedRow;
   };
 
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
 
   const columns = [
     { field: "id", headerName: "ID" },
@@ -255,7 +264,7 @@ export default function FullFeaturedCrudGrid() {
         }}
       >
         <DataGridPro
-          rows={Users()}
+          rows={users}
           columns={columns}
           editMode="row"
           rowModesModel={rowModesModel}
@@ -275,4 +284,3 @@ export default function FullFeaturedCrudGrid() {
     </Box>
   );
 };
-

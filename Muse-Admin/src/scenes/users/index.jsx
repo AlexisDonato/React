@@ -5,13 +5,11 @@ import DeleteIcon from '@mui/icons-material/DeleteOutlineRounded';
 import CreateIcon from '@mui/icons-material/Create';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useTheme } from "@mui/material";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import Header from "../../components/Header";
 
 import Users from "../../data/muse_users";
-import { mockDataContacts } from "../../data/mockData";
-import { useState } from "react";
 
 
 const UsersIndex = () => {
