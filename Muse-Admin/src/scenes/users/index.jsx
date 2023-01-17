@@ -9,6 +9,8 @@ import { useState, useEffect } from "react";
 
 import Header from "../../components/Header";
 
+import "../../components/style.css"
+
 import Users from "../../data/muse_users";
 
 
@@ -35,17 +37,18 @@ const UsersIndex = () => {
     {
       field: "email",
       headerName: "Email",
-      editable: true
+      editable: true,
       // headerAlign: "left",
       // align: "left",
     },
     {
-      field: "role",
+      field: "roles",
       headerName: "Roles",
+      minWidth: 200,
       editable: true
     },
     {
-      field: "phone",
+      field: "phoneNumber",
       headerName: "Phone Number",
       editable: true
     },
@@ -57,12 +60,25 @@ const UsersIndex = () => {
     {
       field: "address",
       headerName: "Address",
-      editable: true
+      renderCell: (params) => (
+        <ul className="flex">
+          {params.value.map((address, index) => (
+            <li key={index}>{address.id}</li>
+          ))}
+        </ul>
+      ),
     },
     {
       field: "carts",
       headerName: "Carts",
-      editable: true
+      minWidth: 200,
+      renderCell: (params) => (
+        <ul className="flex">
+          {params.value.map((cart, index) => (
+            <li key={index}>{cart.clientOrderId}</li>
+          ))}
+        </ul>
+      ),
     },
     {
       field: "registerDate",
@@ -75,14 +91,13 @@ const UsersIndex = () => {
       editable: true
     },
     {
-      field: "isVerified",
+      field: "verified",
       headerName: "Is Verified",
       editable: true
     },
     {
       field: "pro",
       headerName: "Pro",
-      editable: true
     },
     {
       field: "vat",
@@ -95,7 +110,7 @@ const UsersIndex = () => {
       editable: true
     },
     {
-      field: "proJobPosiiton",
+      field: "proJobPosition",
       headerName: "Pro Job Posiiton",
       editable: true
     },
