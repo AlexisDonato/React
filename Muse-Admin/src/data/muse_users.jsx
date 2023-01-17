@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import axios from "axios";
-// import { date } from "yup/lib/locale";
 
 export default async function Users() {
   // With function 'fetch'
@@ -8,15 +6,13 @@ export default async function Users() {
   // console.log(users);
 
   // With 'axios' ("proxy" : "http://localhost:8000" is needed to be written in 'package.json)
-  const users = useEffect(() => {
-    axios.get("/api/users", {
+  const users = (
+    await axios.get("/api/users", {
       headers: {
         "Accept": "application/json"
       }
-    }).then((response) => {
-      console.log(response.data)
-    })
-  }, [])
+    })).data;
+
   return (
     users.map((item) => (
       {
