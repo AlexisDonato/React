@@ -18,6 +18,7 @@ export default async function Categories() {
       {
         id: item?.id,
         name: item?.name,
+        parentCategory: item?.parentCategory,
         image: item?.image,
       }
     )

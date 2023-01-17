@@ -22,9 +22,8 @@ export default async function Addresses() {
         zipcode: item?.zipcode,
         city: item?.city,
         pathType: item?.pathType,
-        phoneNumber: item?.phoneNumber,
+        pathNumber: item?.pathNumber,
         user: item?.user,
-        registerDate: item?.registerDate,
         billingAddress: item?.billingAddress,
         deliveryAddress: item?.deliveryAddress,
       }
