@@ -47,8 +47,14 @@ const CouponsIndex = () => {
       headerName: "Cart",
       minWidth: 150,
       editable: true,
-      // headerAlign: "left",
-      // align: "left",
+      flex: 2,
+      renderCell: (params) => (
+        <ul className="flex">
+          {params.value.map((cart, index) => (
+            <li key={index}>{cart.clientOrderId}</li>
+          ))}
+        </ul>
+      ),
     },
    
     {

@@ -19,8 +19,8 @@ export default async function OrderDetails() {
         id: item?.id,
         productId: item?.productId,
         quantity: item?.quantity,
-        cart: item?.cart,
-        product: item?.product,
+        cart: item?.cart.clientOrderId,
+        product: item?.product.name,
         subTotal: item?.subTotal,
       }
     )

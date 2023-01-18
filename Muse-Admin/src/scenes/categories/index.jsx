@@ -30,7 +30,13 @@ const CategoriesIndex = () => {
   const columns = [
     { field: "id", headerName: "ID", flex: 2 },
     { field: "name", headerName: "First Name", editable: true, flex: 2 },
-    { field: "parentCategory", headerName: "Parent Category", editable: true, flex: 2 },
+    { 
+      field: "parentCategory", 
+      headerName: "Parent Category", 
+      editable: true, 
+      flex: 2, 
+      renderCell: (params) => (params.value && params.value.name) || '-'
+   },
     { field: "image", headerName: "Image", editable: true, flex: 2 },
    
     {

@@ -27,8 +27,8 @@ export default async function Products() {
         image: item?.image,
         image1: item?.image1,
         image2: item?.image2,
-        supplier: item?.supplier,
-        category: item?.category,
+        supplier: item?.supplier.name,
+        category: item?.category.name,
       }
     )
     )

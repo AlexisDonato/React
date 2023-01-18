@@ -12,7 +12,7 @@ export default async function Coupons() {
         "Accept": "application/json"
       }
     })).data;
-
+    console.log(coupons);
   return (
     coupons.map((item) => (
       {

@@ -6,13 +6,14 @@ export default async function Addresses() {
   // console.log(addresses);
 
   // With 'axios' ("proxy" : "http://localhost:8000" is needed to be written in 'package.json)
+
   const addresses = (
     await axios.get("/api/addresses", {
       headers: {
         "Accept": "application/json"
       }
     })).data;
-
+    console.log(addresses);
   return (
     addresses.map((item) => (
       {
@@ -23,7 +24,7 @@ export default async function Addresses() {
         city: item?.city,
         pathType: item?.pathType,
         pathNumber: item?.pathNumber,
-        user: item?.user,
+        user: item?.user.email,
         billingAddress: item?.billingAddress,
         deliveryAddress: item?.deliveryAddress,
       }

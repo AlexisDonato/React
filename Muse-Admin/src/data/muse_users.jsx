@@ -12,7 +12,7 @@ export default async function Users() {
         "Accept": "application/json"
       }
     })).data;
-
+    console.log(users);
   return (
     users.map((item) => (
       {

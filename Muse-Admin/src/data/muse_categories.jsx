@@ -12,7 +12,7 @@ export default async function Categories() {
         "Accept": "application/json"
       }
     })).data;
-
+    console.log(categories);
   return (
     categories.map((item) => (
       {

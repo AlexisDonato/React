@@ -34,13 +34,6 @@ const AddressesIndex = () => {
       header: "User", 
       editable: true, 
       flex: 1,
-      // renderCell: (params) => (
-      //   <ul className="flex">
-      //     {params.value.map((user, index) => (
-      //       <li key={index}>{user.email}</li>
-      //     ))}
-      //   </ul>
-      // ),
     },
     { field: "name", headerName: "Name", editable: true },
     {
