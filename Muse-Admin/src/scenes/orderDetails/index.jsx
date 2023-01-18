@@ -79,7 +79,7 @@ const OrderDetailsIndex = () => {
 
   return (
     <Box m="20px">
-      <Header title="Order_details Index" subtitle="List of all the Order_details" />
+      <Header title="Order Details Index" subtitle="List of all the Order Details" />
       <Box height="75vh"
         m="40px 0 0 0"
         sx={{

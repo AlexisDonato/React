@@ -53,7 +53,7 @@ const SuppliersIndex = () => {
 
   return (
     <Box m="20px">
-      <Header title="Users Index" subtitle="List of all the users" />
+      <Header title="Suppliers Index" subtitle="List of all the Suppliers" />
       <Box height="75vh"
         m="40px 0 0 0"
         sx={{

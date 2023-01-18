@@ -102,7 +102,7 @@ const AddressesIndex = () => {
 
   return (
     <Box m="20px">
-      <Header title="Users Index" subtitle="List of all the users" />
+      <Header title="Addresses Index" subtitle="List of all the Addresses" />
       <Box height="75vh"
         m="40px 0 0 0"
         sx={{
