@@ -8,6 +8,8 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useTheme } from "@mui/material";
 import { useState, useEffect } from "react";
 
+import { Link } from "react-router-dom";
+
 import Header from "../../components/Header";
 
 import "../../components/style.css"
@@ -30,7 +32,7 @@ const SuppliersIndex = () => {
   const columns = [
     { field: "id", headerName: "ID", flex: 2 },
     { field: "name", headerName: "First Name", editable: true, flex: 2 },
-   
+
     {
       field: "actions",
       headerName: "",
@@ -85,9 +87,11 @@ const SuppliersIndex = () => {
           },
         }}
       >
-        <IconButton title="Add new" aria-label="new">
-          <AddCircleOutlineIcon />Add New
-        </IconButton>
+        <Link to="/add_new_supplier" style={{ textDecoration: "none" }}>
+          <IconButton title="Add new" aria-label="new">
+            <AddCircleOutlineIcon />Add New
+          </IconButton>
+        </Link>
         <DataGrid
           rows={suppliers}
           columns={columns}

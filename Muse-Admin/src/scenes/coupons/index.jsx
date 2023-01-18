@@ -8,6 +8,8 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useTheme } from "@mui/material";
 import { useState, useEffect } from "react";
 
+import { Link } from "react-router-dom";
+
 import Header from "../../components/Header";
 
 import "../../components/style.css"
@@ -110,9 +112,11 @@ const CouponsIndex = () => {
           },
         }}
       >
-        <IconButton title="Add new" aria-label="new">
-          <AddCircleOutlineIcon />Add New
-        </IconButton>
+        <Link to="/add_new_coupon" style={{ textDecoration: "none" }}>
+          <IconButton title="Add new" aria-label="new">
+            <AddCircleOutlineIcon />Add New
+          </IconButton>
+        </Link>
         <DataGrid
           rows={coupons}
           columns={columns}

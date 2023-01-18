@@ -8,7 +8,10 @@ import Users from "./scenes/users";
 import Addresses from "./scenes/addresses";
 import Suppliers from "./scenes/suppliers";
 import Categories from "./scenes/categories";
+
 import Products from "./scenes/products";
+import AddNewProduct from "./scenes/products/add_new_product";
+
 import OrderDetails from "./scenes/orderDetails";
 import Carts from "./scenes/carts";
 import Coupons from "./scenes/coupons";
@@ -45,7 +48,10 @@ function App() {
               <Route path="/addresses" element={<Addresses />} />
               <Route path="/suppliers" element={<Suppliers />} />
               <Route path="/categories" element={<Categories />} />
+
               <Route path="/products" element={<Products />} />
+              <Route path="/add_new_product" element={<AddNewProduct />} />
+
               <Route path="/orderDetails" element={<OrderDetails />} />
               <Route path="/carts" element={<Carts />} />
               <Route path="/coupons" element={<Coupons />} />
