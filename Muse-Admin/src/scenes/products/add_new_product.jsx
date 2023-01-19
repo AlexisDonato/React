@@ -5,192 +5,203 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 
 import axios from "axios";
+import { useEffect, useState } from "react";
+
+const handleInput = (event, setState) => {
+  setState(event.currentTarget.value);
+}
+
+const handleFile = (event, setState) => {
+  setState(event.currentTarget.files[0]);
+}
 
 const AddNewProduct = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
-  const handleFormSubmit = (values) => {
-    console.log(values);
+  const [name, setName] = useState("");
+  const [supplier, setSupplier] = useState("");
+  const [category, setCategory] = useState("");
+  const [discountRate, setDiscountRate] = useState("");
+  const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [description, setDescription] = useState("");
+  const [content, setContent] = useState("");
+  const [image, setImage] = useState();
+  const [image1, setImage1] = useState();
+  const [image2, setImage2] = useState();
 
-    axios.post(("/api/products", {
-      headers: {
-        "Accept": "application/json"
+
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    const name = event.currentTarget.name.value;
+    const supplier = event.currentTarget.supplier.value;
+    const category = event.currentTarget.category.value;
+    const discountRate = event.currentTarget.discountRate.value;
+    const price = event.currentTarget.price.value;
+    const quantity = event.currentTarget.quantity.value;
+    const description = event.currentTarget.description.value;
+    const content = event.currentTarget.content.value;
+
+    return post =
+      {
+        name: name,
+        price: price,
+        description: description,
+        content: content,
+        discount: discount,
+        discountRate: discountRate,
+        quantity: quantity,
+        image: image,
+        image1: image1,
+        image2: image2,
+        supplier: supplier,
+        category: category,
       }
-    }), values)
-        .then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-            console.log(error)
-        })
+    
+ 
+    // axios.post(("/api/products"), values)
+    //   .then(response => {
+    //     console.log(response)
+    //   })
+    //   .catch(error => {
+    //     console.log(error)
+    //   })
   };
 
   return (
     <Box m="20px">
       <Header title="CREATE PRODUCT" subtitle="Create a New Product" />
 
-      <Formik
-        onSubmit={handleFormSubmit}
-        initialValues={initialValues}
-        validationSchema={checkoutSchema}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleBlur,
-          handleChange,
-          handleSubmit,
-        }) => (
-          <form onSubmit={handleSubmit}>
-            <Box
-              display="grid"
-              gap="30px"
-              gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-              sx={{
-                "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
-              }}
-            >
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="name"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.name}
-                name="name"
-                error={!!touched.name && !!errors.name}
-                helperText={touched.name && errors.name}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Supplier"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.supplier}
-                name="supplier"
-                error={!!touched.supplier && !!errors.supplier}
-                helperText={touched.supplier && errors.supplier}
-                sx={{ gridColumn: "span 1" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Discount Rate"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.discountRate}
-                name="discountRate"
-                error={!!touched.discountRate && !!errors.discountRate}
-                helperText={touched.discountRate && errors.discountRate}
-                sx={{ gridColumn: "span 1" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Price"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.price}
-                name="price"
-                error={!!touched.price && !!errors.price}
-                helperText={touched.price && errors.price}
-                sx={{ gridColumn: "span 1" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Quantity"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.quantity}
-                name="quantity"
-                error={!!touched.quantity && !!errors.quantity}
-                helperText={touched.quantity && errors.quantity}
-                sx={{ gridColumn: "span 1" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Description"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.description}
-                name="description"
-                error={!!touched.description && !!errors.description}
-                helperText={touched.description && errors.description}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Content"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.content}
-                name="content"
-                error={!!touched.content && !!errors.content}
-                helperText={touched.content && errors.content}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Image"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.image}
-                name="image"
-                error={!!touched.image && !!errors.image}
-                helperText={touched.image && errors.image}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Image 1"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.image1}
-                name="image1"
-                error={!!touched.image1 && !!errors.image1}
-                helperText={touched.image1 && errors.image1}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Image 2"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.image2}
-                name="image2"
-                error={!!touched.image2 && !!errors.image2}
-                helperText={touched.image2 && errors.image2}
-                sx={{ gridColumn: "span 2" }}
-              />
+      <form onSubmit={handleFormSubmit} encType="multipart/form-data">
+        <Box
+          display="grid"
+          gap="30px"
+          gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+          sx={{
+            "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+          }}
+        >
+          <TextField
+            fullWidth
+            variant="filled"
+            type="text"
+            label="name"
+            onChange={(event) => handleInput(event, setName)}
+            value={name}
+            name="name"
+            sx={{ gridColumn: "span 2" }}
+          />
+          <TextField
+            fullWidth
+            variant="filled"
+            type="text"
+            label="Supplier"
+            onChange={(event) => {handleInput(event, setSupplier)}}
+            value={supplier}
+            name="supplier"
+            sx={{ gridColumn: "span 1" }}
+          />
+          <TextField
+            fullWidth
+            variant="filled"
+            type="text"
+            label="Category"
+            onChange={(event) => {handleInput(event, setCategory)}}
+            value={category}
+            name="category"
+            sx={{ gridColumn: "span 1" }}
+          />
+          <TextField
+            fullWidth
+            variant="filled"
+            type="text"
+            label="Discount Rate"
+            onChange={(event) => {handleInput(event, setDiscountRate)}}
+            value={discountRate}
+            name="discountRate"
+            sx={{ gridColumn: "span 1" }}
+          />
+          <TextField
+            fullWidth
+            variant="filled"
+            type="text"
+            label="Price"
+            onChange={(event) => {handleInput(event, setPrice)}}
+            value={price}
+            name="price"
+            sx={{ gridColumn: "span 1" }}
+          />
+          <TextField
+            fullWidth
+            variant="filled"
+            type="text"
+            label="Quantity"
+            onChange={(event) => {handleInput(event, setQuantity)}}
+            value={quantity}
+            name="quantity"
+            sx={{ gridColumn: "span 1" }}
+          />
+          <TextField
+            fullWidth
+            variant="filled"
+            type="text"
+            label="Description"
+            onChange={(event) => {handleInput(event, setDescription)}}
+            value={description}
+            name="description"
+            sx={{ gridColumn: "span 2" }}
+          />
+          <TextField
+            fullWidth
+            variant="filled"
+            type="text"
+            label="Content"
+            onChange={(event) => {handleInput(event, setContent)}}
+            value={content}
+            name="content"
+            sx={{ gridColumn: "span 2" }}
+          />
+          <TextField
+            fullWidth
+            variant="filled"
+            type="file"
+            label="Image"
+            name="image"
+            onChange={(event) => {handleFile(event, setImage)}}
+            sx={{ gridColumn: "span 2" }}
+            accept="image/*"
+          />
+          <TextField
+            fullWidth
+            variant="filled"
+            type="file"
+            label="Image 1"
+            name="image1"
+            onChange={(event) => {handleFile(event, setImage1)}}
+            sx={{ gridColumn: "span 2" }}
+            accept="image/*"
+          />
+          <TextField
+            fullWidth
+            variant="filled"
+            type="file"
+            label="Image 2"
+            name="image2"
+            onChange={(event) => {handleFile(event, setImage2)}}
+            sx={{ gridColumn: "span 2" }}
+            accept="image/*"
+          />
 
-            </Box>
-            <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" color="secondary" variant="contained">
-                Create New User
-              </Button>
-            </Box>
-          </form>
-        )}
-      </Formik>
+        </Box>
+        <Box display="flex" justifyContent="end" mt="20px">
+          <Button type="submit" color="secondary" variant="contained">
+            Create New Product
+          </Button>
+        </Box>
+      </form>
+
     </Box>
   );
 };

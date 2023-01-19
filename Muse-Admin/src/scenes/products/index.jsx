@@ -25,12 +25,11 @@ const ProductsIndex = () => {
 
   useEffect(() => {
     Products().then(data => setProducts(data));
-
   }, []);
 
 
   const columns = [
-    { field: "id", headerName: "ID", flex: 0.8, },
+    { field: "id", headerName: "ID", flex: 0.8 },
     { field: "name", headerName: "Name", editable: true },
     {
       field: "supplier",
@@ -89,19 +88,23 @@ const ProductsIndex = () => {
     {
       field: "actions",
       headerName: "",
-      renderCell: () => (
+      renderCell: (param) =>{ 
+        return(
         <Box>
           <IconButton title="Save" aria-label="delete">
             <SaveIcon />
           </IconButton>
+          <Link to={`/edit_product/${param.row.id}`} style={{ textDecoration: "none" }}>
           <IconButton title="Edit" aria-label="edit">
             <CreateIcon />
           </IconButton>
+          </Link>
           <IconButton title="Delete" aria-label="new">
             <DeleteIcon />
           </IconButton>
         </Box>
       )
+    }
     },
   ];
 

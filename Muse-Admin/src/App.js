@@ -11,6 +11,7 @@ import Categories from "./scenes/categories";
 
 import Products from "./scenes/products";
 import AddNewProduct from "./scenes/products/add_new_product";
+import EditProduct from "./scenes/products/edit_product";
 
 import OrderDetails from "./scenes/orderDetails";
 import Carts from "./scenes/carts";
@@ -51,6 +52,7 @@ function App() {
 
               <Route path="/products" element={<Products />} />
               <Route path="/add_new_product" element={<AddNewProduct />} />
+              <Route path="/edit_product/:id" element={<EditProduct />} />
 
               <Route path="/orderDetails" element={<OrderDetails />} />
               <Route path="/carts" element={<Carts />} />
