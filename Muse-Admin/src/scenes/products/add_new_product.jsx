@@ -1,5 +1,4 @@
 import { Box, Button, TextField } from "@mui/material";
-import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
@@ -31,7 +30,6 @@ const AddNewProduct = () => {
   const [image2, setImage2] = useState();
 
 
-
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
@@ -44,31 +42,31 @@ const AddNewProduct = () => {
     const description = event.currentTarget.description.value;
     const content = event.currentTarget.content.value;
 
-    return 
-    // const post.json() =
-    //   {
-    //     name: name,
-    //     price: price,
-    //     description: description,
-    //     content: content,
-    //     discount: discount,
-    //     discountRate: discountRate,
-    //     quantity: quantity,
-    //     image: image,
-    //     image1: image1,
-    //     image2: image2,
-    //     supplier: supplier,
-    //     category: category,
-    //   }
-    
- 
-    // axios.post(("/api/products"), values)
-    //   .then(response => {
-    //     console.log(response)
-    //   })
-    //   .catch(error => {
-    //     console.log(error)
-    //   })
+    const values =
+    {
+      name: name,
+      price: price,
+      description: description,
+      content: content,
+      discountRate: discountRate,
+      quantity: quantity,
+      image: image,
+      image1: image1,
+      image2: image2,
+      supplier: supplier,
+      category: category,
+    }
+
+
+    axios.post(("/api/products"), values, { headers: { "Content-Type": "application/json" } })
+      .then(response => {
+        console.log(response);
+        console.log(values)
+
+      })
+      .catch(error => {
+        console.log(error)
+      })
   };
 
   return (
@@ -99,7 +97,7 @@ const AddNewProduct = () => {
             variant="filled"
             type="text"
             label="Supplier"
-            onChange={(event) => {handleInput(event, setSupplier)}}
+            onChange={(event) => { handleInput(event, setSupplier) }}
             value={supplier}
             name="supplier"
             sx={{ gridColumn: "span 1" }}
@@ -109,7 +107,7 @@ const AddNewProduct = () => {
             variant="filled"
             type="text"
             label="Category"
-            onChange={(event) => {handleInput(event, setCategory)}}
+            onChange={(event) => { handleInput(event, setCategory) }}
             value={category}
             name="category"
             sx={{ gridColumn: "span 1" }}
@@ -119,7 +117,7 @@ const AddNewProduct = () => {
             variant="filled"
             type="text"
             label="Discount Rate"
-            onChange={(event) => {handleInput(event, setDiscountRate)}}
+            onChange={(event) => { handleInput(event, setDiscountRate) }}
             value={discountRate}
             name="discountRate"
             sx={{ gridColumn: "span 1" }}
@@ -129,7 +127,7 @@ const AddNewProduct = () => {
             variant="filled"
             type="text"
             label="Price"
-            onChange={(event) => {handleInput(event, setPrice)}}
+            onChange={(event) => { handleInput(event, setPrice) }}
             value={price}
             name="price"
             sx={{ gridColumn: "span 1" }}
@@ -139,7 +137,7 @@ const AddNewProduct = () => {
             variant="filled"
             type="text"
             label="Quantity"
-            onChange={(event) => {handleInput(event, setQuantity)}}
+            onChange={(event) => { handleInput(event, setQuantity) }}
             value={quantity}
             name="quantity"
             sx={{ gridColumn: "span 1" }}
@@ -149,7 +147,7 @@ const AddNewProduct = () => {
             variant="filled"
             type="text"
             label="Description"
-            onChange={(event) => {handleInput(event, setDescription)}}
+            onChange={(event) => { handleInput(event, setDescription) }}
             value={description}
             name="description"
             sx={{ gridColumn: "span 2" }}
@@ -159,7 +157,7 @@ const AddNewProduct = () => {
             variant="filled"
             type="text"
             label="Content"
-            onChange={(event) => {handleInput(event, setContent)}}
+            onChange={(event) => { handleInput(event, setContent) }}
             value={content}
             name="content"
             sx={{ gridColumn: "span 2" }}
@@ -170,7 +168,7 @@ const AddNewProduct = () => {
             type="file"
             label="Image"
             name="image"
-            onChange={(event) => {handleFile(event, setImage)}}
+            onChange={(event) => { handleFile(event, setImage) }}
             sx={{ gridColumn: "span 2" }}
             accept="image/*"
           />
@@ -180,7 +178,7 @@ const AddNewProduct = () => {
             type="file"
             label="Image 1"
             name="image1"
-            onChange={(event) => {handleFile(event, setImage1)}}
+            onChange={(event) => { handleFile(event, setImage1) }}
             sx={{ gridColumn: "span 2" }}
             accept="image/*"
           />
@@ -190,7 +188,7 @@ const AddNewProduct = () => {
             type="file"
             label="Image 2"
             name="image2"
-            onChange={(event) => {handleFile(event, setImage2)}}
+            onChange={(event) => { handleFile(event, setImage2) }}
             sx={{ gridColumn: "span 2" }}
             accept="image/*"
           />
