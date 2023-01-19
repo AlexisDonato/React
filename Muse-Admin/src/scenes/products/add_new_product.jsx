@@ -44,21 +44,22 @@ const AddNewProduct = () => {
     const description = event.currentTarget.description.value;
     const content = event.currentTarget.content.value;
 
-    return post =
-      {
-        name: name,
-        price: price,
-        description: description,
-        content: content,
-        discount: discount,
-        discountRate: discountRate,
-        quantity: quantity,
-        image: image,
-        image1: image1,
-        image2: image2,
-        supplier: supplier,
-        category: category,
-      }
+    return 
+    // const post.json() =
+    //   {
+    //     name: name,
+    //     price: price,
+    //     description: description,
+    //     content: content,
+    //     discount: discount,
+    //     discountRate: discountRate,
+    //     quantity: quantity,
+    //     image: image,
+    //     image1: image1,
+    //     image2: image2,
+    //     supplier: supplier,
+    //     category: category,
+    //   }
     
  
     // axios.post(("/api/products"), values)

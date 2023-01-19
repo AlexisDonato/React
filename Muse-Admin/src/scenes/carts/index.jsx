@@ -36,7 +36,8 @@ const CartsIndex = () => {
       field: "user",
       headerName: "User",
       minWidth: 200,
-      editable: true
+      editable: true,
+      renderCell: (params) => (params.value && params.value.email) || '-'
     },
     {
       field: "validated",
@@ -48,6 +49,13 @@ const CartsIndex = () => {
       headerName: "Order Details",
       minWidth: 150,
       editable: true,
+      renderCell: (params) => (
+        <ul className="flex">
+          {params.value.map((orderDetails, index) => (
+            <li key={index}>{orderDetails.id}</li>
+          ))}
+        </ul>
+      ),
       // headerAlign: "left",
       // align: "left",
     },
@@ -72,12 +80,14 @@ const CartsIndex = () => {
     {
       field: "billingAddress",
       headerName: "Billing Address",
-      editable: true
+      editable: true,
+      renderCell: (params) => (params.value && params.value.id) || '-'
     },
     {
       field: "deliveryAddress",
       headerName: "Delivery Address",
-      editable: true
+      editable: true,
+      renderCell: (params) => (params.value && params.value.id) || '-'
     },
     {
       field: "additionalDiscountRate",
@@ -91,7 +101,8 @@ const CartsIndex = () => {
     {
       field: "coupon",
       headerName: "Coupon",
-      editable: true
+      editable: true,
+      renderCell: (params) => (params.value && params.value.code) || '-'
     },
     {
       field: "carrier",
