@@ -1,10 +1,12 @@
 import { Box, Button, TextField } from "@mui/material";
+
 import * as yup from "yup";
+
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const handleInput = (event, setState) => {
   setState(event.currentTarget.value);
@@ -218,20 +220,20 @@ const checkoutSchema = yup.object().shape({
     .required("Required"),
   content: yup.string().required("Required"),
   quantity: yup.string().required("Required"),
-  // image: yup.string().required("Required"),
-  // image1: yup.string().required("Required"),
-  // image2: yup.string().required("Required"),
+  // image: yup.mixed().required("Required"),
+  // image1: yup.mixed().required("Required"),
+  // image2: yup.mixed().required("Required"),
 });
-const initialValues = {
-  name: "",
-  supplier: "",
-  price: "",
-  description: "",
-  content: "",
-  quantity: "",
-  image: "",
-  image1: "",
-  image2: "",
-};
+// const initialValues = {
+//   name: "",
+//   supplier: "",
+//   price: "",
+//   description: "",
+//   content: "",
+//   quantity: "",
+//   image: "",
+//   image1: "",
+//   image2: "",
+// };
 
 export default AddNewProduct;
