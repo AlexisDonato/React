@@ -1,4 +1,4 @@
-# React Admin Dashboard
+# Muse Admin Dashboard
 
-Completed React Admin Dashboard Repo
+Using React
 

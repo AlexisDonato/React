@@ -27,7 +27,6 @@ const ProductsIndex = () => {
     Products().then(data => setProducts(data));
   }, []);
 
-
   const columns = [
     { field: "id", headerName: "ID", flex: 0.8 },
     { field: "name", headerName: "Name", editable: true },
