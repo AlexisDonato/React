@@ -1,6 +1,7 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Select, MenuItem } from "@material-ui/core";
 
+import { useParams, useNavigate } from 'react-router-dom';
 
 import * as yup from "yup";
 
@@ -30,6 +31,8 @@ const AddNewProduct = () => {
 	const [supplierOptions, setSupplierOptions] = useState([]);
 	const [categoryOptions, setCategoryOptions] = useState([]);
 
+	const navigate = useNavigate();
+
 	const handleFormSubmit = (event) => {
 		event.preventDefault();
 
@@ -40,12 +43,12 @@ const AddNewProduct = () => {
 			description: description,
 			content: content,
 			discountRate: discountRate,
-			quantity: quantity,
-			image: image,
-			image1: image1,
-			image2: image2,
-			supplier: supplier,
-			category: category,
+			quantity: parseInt(quantity),
+			// image: image,
+			// image1: image1,
+			// image2: image2,
+			// supplier: supplier,
+			// category: category,
 		}
 
 
@@ -57,7 +60,7 @@ const AddNewProduct = () => {
 			.then(response => {
 				console.log(response);
 				console.log(values)
-
+				navigate("/products")
 			})
 			.catch(error => {
 				console.log(error)
@@ -72,7 +75,6 @@ const AddNewProduct = () => {
 	const handleFile = (event, setState) => {
 		setState(event.currentTarget.files[0]);
 	}
-
 
 	useEffect(() => {
 		axios
@@ -112,11 +114,11 @@ const AddNewProduct = () => {
 						fullWidth
 						variant="filled"
 						type="text"
-						label="name"
+						label="name*"
 						onChange={(event) => handleInput(event, setName)}
 						value={name}
 						name="name"
-						sx={{ gridColumn: "span 2", backgroundColor: 'grey', backgroundColor: 'grey' }}
+						sx={{ gridColumn: "span 2", backgroundColor: 'grey' }}
 					/>
 					<Select
 						fullWidth
@@ -152,7 +154,7 @@ const AddNewProduct = () => {
 						fullWidth
 						variant="filled"
 						type="text"
-						label="Discount Rate"
+						label="Discount Rate*"
 						onChange={(event) => { handleInput(event, setDiscountRate) }}
 						value={discountRate}
 						name="discountRate"
@@ -162,7 +164,7 @@ const AddNewProduct = () => {
 						fullWidth
 						variant="filled"
 						type="text"
-						label="Price"
+						label="Price*"
 						onChange={(event) => { handleInput(event, setPrice) }}
 						value={price}
 						name="price"
@@ -172,7 +174,7 @@ const AddNewProduct = () => {
 						fullWidth
 						variant="filled"
 						type="text"
-						label="Quantity"
+						label="Quantity*"
 						onChange={(event) => { handleInput(event, setQuantity) }}
 						value={quantity}
 						name="quantity"
@@ -182,7 +184,7 @@ const AddNewProduct = () => {
 						fullWidth
 						variant="filled"
 						type="text"
-						label="Description"
+						label="Description*"
 						onChange={(event) => { handleInput(event, setDescription) }}
 						value={description}
 						name="description"
@@ -192,7 +194,7 @@ const AddNewProduct = () => {
 						fullWidth
 						variant="filled"
 						type="text"
-						label="Content"
+						label="Content*"
 						onChange={(event) => { handleInput(event, setContent) }}
 						value={content}
 						name="content"
@@ -230,11 +232,11 @@ const AddNewProduct = () => {
 					/>
 
 				</Box>
-				<Box display="flex" justifyContent="end" mt="20px">
-					<Button type="submit" color="secondary" variant="contained">
-						Create New Product
-					</Button>
-				</Box>
+					<Box display="flex" justifyContent="end" mt="20px">
+						<Button type="submit" color="secondary" variant="contained" onClick={handleFormSubmit}>
+							Create New Product
+						</Button>
+					</Box>
 			</form>
 
 		</Box>

@@ -1,9 +1,7 @@
 import { Box, IconButton } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import DeleteIcon from '@mui/icons-material/DeleteOutlineRounded';
 import CreateIcon from '@mui/icons-material/Create';
-import SaveIcon from '@mui/icons-material/Save';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useTheme } from "@mui/material";
 import { useState, useEffect } from "react";
@@ -92,17 +90,11 @@ const ProductsIndex = () => {
       renderCell: (param) =>{ 
         return(
         <Box>
-          <IconButton title="Save" aria-label="delete">
-            <SaveIcon />
-          </IconButton>
           <Link to={`/edit_product/${param.row.id}`} style={{ textDecoration: "none" }}>
           <IconButton title="Edit" aria-label="edit">
             <CreateIcon />
           </IconButton>
           </Link>
-          <IconButton title="Delete" aria-label="new">
-            <DeleteIcon />
-          </IconButton>
         </Box>
       )
     }
