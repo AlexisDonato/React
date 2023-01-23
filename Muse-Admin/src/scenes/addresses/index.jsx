@@ -36,7 +36,7 @@ const AddressesIndex = () => {
       field: "user", 
       header: "User", 
       editable: true, 
-      flex: 1,
+      flex: 10,
     },
     { field: "name", headerName: "Name", editable: true },
     {
