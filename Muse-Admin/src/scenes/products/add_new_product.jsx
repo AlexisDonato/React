@@ -1,7 +1,7 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Select, MenuItem } from "@material-ui/core";
 
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import * as yup from "yup";
 
@@ -101,7 +101,7 @@ const AddNewProduct = () => {
 		<Box m="20px">
 			<Header title="CREATE PRODUCT" subtitle="Create a New Product" />
 
-			<form onSubmit={handleFormSubmit} encType="multipart/form-data">
+			<form onSubmit={handleFormSubmit} encType="multipart/form-data" validationSchema={validationSchema}>
 				<Box
 					display="grid"
 					gap="30px"
@@ -246,7 +246,7 @@ const AddNewProduct = () => {
 // const phoneRegExp =
 //   /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 
-const checkoutSchema = yup.object().shape({
+const validationSchema = yup.object().shape({
 	name: yup.string().required("Required"),
 	supplier: yup.string().required("Required"),
 	price: yup.string().required("Required"),

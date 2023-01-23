@@ -131,7 +131,7 @@ const AddNewProduct = () => {
     <Box m="20px">
       <Header title="EDIT PRODUCT" subtitle="Edit Product" />
 
-      <form onSubmit={handleFormSubmit} encType="multipart/form-data">
+      <form onSubmit={handleFormSubmit} encType="multipart/form-data" validationSchema={validationSchema}>
         <Box
           display="grid"
           gap="30px"
@@ -283,7 +283,7 @@ const AddNewProduct = () => {
 // const phoneRegExp =
 //   /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 
-const checkoutSchema = yup.object().shape({
+const validationSchema = yup.object().shape({
   name: yup.string().required("Required"),
   supplier: yup.string().required("Required"),
   price: yup.string().required("Required"),
