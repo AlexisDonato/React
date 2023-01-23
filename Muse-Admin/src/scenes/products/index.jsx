@@ -33,13 +33,15 @@ const ProductsIndex = () => {
     {
       field: "supplier",
       headerName: "Supplier",
-      editable: true
+      editable: true,
+      renderCell: (params) => (params.value && params.value.name) || '-'
     },
     {
       field: "category",
       headerName: "Category",
       minWidth: 150,
       editable: true,
+      renderCell: (params) => (params.value && params.value.name) || '-'
       // headerAlign: "left",
       // align: "left",
     },
