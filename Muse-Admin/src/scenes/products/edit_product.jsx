@@ -49,8 +49,8 @@ const AddNewProduct = () => {
       // image: image,
       // image1: image1,
       // image2: image2,
-      // supplier: supplier,
-      // category: category,
+      supplier: supplier,
+      category: category,
     }
 
 
@@ -164,7 +164,7 @@ const AddNewProduct = () => {
                   {supplierOptions.map((supplier) => (
                     <option
                       key={supplier.id}
-                      value={supplier.id}
+                      value={"/api/suppliers/"+supplier.id}
                     >
                       {supplier.name}
                     </option>
@@ -184,7 +184,7 @@ const AddNewProduct = () => {
                   {categoryOptions.map((category) => (
                     <option
                       key={category.id}
-                      value={category.id}
+                      value={"/api/categories/"+category.id}
                     >
                       {category.name}
                     </option>

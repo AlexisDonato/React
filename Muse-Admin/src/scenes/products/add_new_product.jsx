@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 
 import { useNavigate } from 'react-router-dom';
 
@@ -46,8 +46,8 @@ const AddNewProduct = () => {
 			// image: image,
 			// image1: image1,
 			// image2: image2,
-			// supplier: supplier,
-			// category: category,
+			supplier: supplier,
+			category: category,
 		}
 
 
@@ -119,7 +119,8 @@ const AddNewProduct = () => {
 						onChange={(event) => handleInput(event, setName)}
 						value={name}
 						name="name"
-						sx={{ gridColumn: "span 2", bg: 'darkgrey', border: '1px solid gray' }}
+						style={{ borderRadius: '3px', backgroundColor: '#333333' }}
+						sx={{ gridColumn: "span 2" }}
 					/>
 					<TextField
 						name="Supplier"
@@ -127,14 +128,15 @@ const AddNewProduct = () => {
 						SelectProps={{
 							native: true,
 						}}
-						style={{ borderRadius: '1px"' }}
+						helperText="Supplier"
+						style={{ borderRadius: '3px', backgroundColor: '#333333' }}
 						sx={{ gridColumn: "span 1" }}
 						select
 						onChange={(event) => handleInput(event, setSupplier)}>
 						{supplierOptions.map((supplier) => (
 							<option
 								key={supplier.id}
-								value={supplier.id}
+								value={"/api/suppliers/"+supplier.id}
 							>
 								{supplier.name}
 							</option>
@@ -146,14 +148,15 @@ const AddNewProduct = () => {
 						SelectProps={{
 							native: true,
 						}}
-						style={{ borderRadius: '1px"' }}
+						helperText="Category"
+						style={{ borderRadius: '3px', backgroundColor: '#333333' }}
 						sx={{ gridColumn: "span 1" }}
 						select
 						onChange={(event) => handleInput(event, setCategory)}>
 						{categoryOptions.map((category) => (
 							<option
 								key={category.id}
-								value={category.id}
+								value={"/api/categories/"+category.id}
 							>
 								{category.name}
 							</option>
@@ -167,7 +170,8 @@ const AddNewProduct = () => {
 						onChange={(event) => { handleInput(event, setDiscountRate) }}
 						value={discountRate}
 						name="discountRate"
-						sx={{ gridColumn: "span 1", backgroundColor: 'grey' }}
+						style={{ borderRadius: '3px', backgroundColor: '#333333' }}
+						sx={{ gridColumn: "span 1" }}
 					/>
 					<TextField
 						fullWidth
@@ -177,7 +181,8 @@ const AddNewProduct = () => {
 						onChange={(event) => { handleInput(event, setPrice) }}
 						value={price}
 						name="price"
-						sx={{ gridColumn: "span 1", backgroundColor: 'grey' }}
+						style={{ borderRadius: '3px', backgroundColor: '#333333' }}
+						sx={{ gridColumn: "span 1" }}
 					/>
 					<TextField
 						fullWidth
@@ -187,7 +192,8 @@ const AddNewProduct = () => {
 						onChange={(event) => { handleInput(event, setQuantity) }}
 						value={quantity}
 						name="quantity"
-						sx={{ gridColumn: "span 1", backgroundColor: 'grey' }}
+						style={{ borderRadius: '3px', backgroundColor: '#333333' }}
+						sx={{ gridColumn: "span 1" }}
 					/>
 					<TextField
 						fullWidth
@@ -197,7 +203,8 @@ const AddNewProduct = () => {
 						onChange={(event) => { handleInput(event, setDescription) }}
 						value={description}
 						name="description"
-						sx={{ gridColumn: "span 2", backgroundColor: 'grey' }}
+						style={{ borderRadius: '3px', backgroundColor: '#333333' }}
+						sx={{ gridColumn: "span 2" }}
 					/>
 					<TextField
 						fullWidth
@@ -207,16 +214,18 @@ const AddNewProduct = () => {
 						onChange={(event) => { handleInput(event, setContent) }}
 						value={content}
 						name="content"
-						sx={{ gridColumn: "span 2", backgroundColor: 'grey' }}
+						style={{ borderRadius: '3px', backgroundColor: '#333333' }}
+						sx={{ gridColumn: "span 2" }}
 					/>
-					<TextField
+					{/* <TextField
 						fullWidth
 						variant="filled"
 						type="file"
 						label="Image"
 						name="image"
 						onChange={(event) => { handleFile(event, setImage) }}
-						sx={{ gridColumn: "span 2", backgroundColor: 'grey' }}
+						style={{ borderRadius: '3px', backgroundColor: '#333333' }}
+						sx={{ gridColumn: "span 2" }}
 						accept="image/*"
 					/>
 					<TextField
@@ -226,7 +235,8 @@ const AddNewProduct = () => {
 						label="Image 1"
 						name="image1"
 						onChange={(event) => { handleFile(event, setImage1) }}
-						sx={{ gridColumn: "span 2", backgroundColor: 'grey' }}
+						style={{ borderRadius: '3px', backgroundColor: '#333333' }}
+						sx={{ gridColumn: "span 2" }}
 						accept="image/*"
 					/>
 					<TextField
@@ -236,10 +246,53 @@ const AddNewProduct = () => {
 						label="Image 2"
 						name="image2"
 						onChange={(event) => { handleFile(event, setImage2) }}
-						sx={{ gridColumn: "span 2", backgroundColor: 'grey' }}
+						style={{ borderRadius: '3px', backgroundColor: '#333333' }}
+						sx={{ gridColumn: "span 2" }}
 						accept="image/*"
-					/>
-
+					/> */}
+					<Button
+						variant="contained"
+						component="label"
+						style={{ border:"1px solid grey"}}
+					>
+						Image upload
+						<input
+							type="file"
+							hidden
+							accept="image/*"
+							onChange={(event) => { handleFile(event, setImage) }}
+						/>
+					</Button>
+					<Typography> Image</Typography>
+					<Button
+						variant="contained"
+						component="label"
+						style={{ border:"1px solid grey"}}
+					>
+						Image 1 upload
+						<input
+							type="file"
+							hidden
+							accept="image/*"
+							onChange={(event) => { handleFile(event, setImage1) }}
+						/>
+					</Button>
+					<Typography> Image 1</Typography>
+					<Button
+						variant="contained"
+						component="label"
+						style={{ border:"1px solid grey"}}
+					>
+						Image 2 upload
+						<input
+							type="file"
+							hidden
+							accept="image/*"
+							onChange={(event) => { handleFile(event, setImage2) }}
+						/>
+					</Button>
+					<Typography> Image 2</Typography>
+					
 				</Box>
 				<Box display="flex" justifyContent="end" mt="20px">
 					<Button type="submit" color="secondary" variant="contained" onClick={handleFormSubmit}>
