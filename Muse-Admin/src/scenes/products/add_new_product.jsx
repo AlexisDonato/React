@@ -136,7 +136,7 @@ const AddNewProduct = () => {
 						{supplierOptions.map((supplier) => (
 							<option
 								key={supplier.id}
-								value={"/api/suppliers/"+supplier.id}
+								value={"/api/suppliers/" + supplier.id}
 							>
 								{supplier.name}
 							</option>
@@ -156,7 +156,7 @@ const AddNewProduct = () => {
 						{categoryOptions.map((category) => (
 							<option
 								key={category.id}
-								value={"/api/categories/"+category.id}
+								value={"/api/categories/" + category.id}
 							>
 								{category.name}
 							</option>
@@ -253,7 +253,7 @@ const AddNewProduct = () => {
 					<Button
 						variant="contained"
 						component="label"
-						style={{ border:"1px solid grey"}}
+						style={{ border: "1px solid grey" }}
 					>
 						Image upload
 						<input
@@ -267,7 +267,7 @@ const AddNewProduct = () => {
 					<Button
 						variant="contained"
 						component="label"
-						style={{ border:"1px solid grey"}}
+						style={{ border: "1px solid grey" }}
 					>
 						Image 1 upload
 						<input
@@ -281,7 +281,7 @@ const AddNewProduct = () => {
 					<Button
 						variant="contained"
 						component="label"
-						style={{ border:"1px solid grey"}}
+						style={{ border: "1px solid grey" }}
 					>
 						Image 2 upload
 						<input
@@ -292,11 +292,18 @@ const AddNewProduct = () => {
 						/>
 					</Button>
 					<Typography> Image 2</Typography>
-					
+
 				</Box>
 				<Box display="flex" justifyContent="end" mt="20px">
 					<Button type="submit" color="secondary" variant="contained" onClick={handleFormSubmit}>
 						Create New Product
+					</Button>
+				</Box>
+				<Box display="flex" justifyContent="end" mt="20px">
+					<Button
+						onClick={() => navigate(-1)}
+						color="secondary" variant="contained">
+						Back
 					</Button>
 				</Box>
 			</form>

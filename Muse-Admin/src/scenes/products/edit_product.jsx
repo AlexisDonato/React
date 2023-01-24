@@ -294,6 +294,13 @@ const AddNewProduct = () => {
           Delete Product
         </Button>
       </Box>
+      <Box display="flex" justifyContent="end" mt="20px">
+        <Button
+          onClick={() => navigate(-1)}
+          color="secondary" variant="contained">
+          Back
+        </Button>
+      </Box>
     </Box>
   );
 };
