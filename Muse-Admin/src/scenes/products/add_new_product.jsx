@@ -1,5 +1,4 @@
 import { Box, Button, TextField } from "@mui/material";
-import { Select, MenuItem } from "@material-ui/core";
 
 import { useNavigate } from 'react-router-dom';
 
@@ -53,10 +52,12 @@ const AddNewProduct = () => {
 
 
 		console.log(values);
-		axios.post("/api/products", values, { headers: { 
-			"Content-Type": "application/json" ,
-			"Accept": "application/json" 
-		} })
+		axios.post("/api/products", values, {
+			headers: {
+				"Content-Type": "application/json",
+				"Accept": "application/json"
+			}
+		})
 			.then(response => {
 				console.log(response);
 				console.log(values)
@@ -101,7 +102,7 @@ const AddNewProduct = () => {
 		<Box m="20px">
 			<Header title="CREATE PRODUCT" subtitle="Create a New Product" />
 
-			<form onSubmit={handleFormSubmit} encType="multipart/form-data" validationSchema={validationSchema}>
+			<form onSubmit={handleFormSubmit} encType="multipart/form-data" validationschema={validationSchema}>
 				<Box
 					display="grid"
 					gap="30px"
@@ -118,38 +119,46 @@ const AddNewProduct = () => {
 						onChange={(event) => handleInput(event, setName)}
 						value={name}
 						name="name"
-						sx={{ gridColumn: "span 2", backgroundColor: 'grey' }}
+						sx={{ gridColumn: "span 2", bg: 'darkgrey', border: '1px solid gray' }}
 					/>
-					<Select
-						fullWidth
-						variant="filled"
-						label="Supplier"
-						value={supplier}
-						onChange={(event) => { handleInput(event, setSupplier) }}
-						name="supplier"
-						sx={{ gridColumn: "span 1", backgroundColor: 'grey' }}
-					>
-						{supplierOptions.map(supplier => (
-							<MenuItem key={supplier.id} value={supplier.id}>
+					<TextField
+						name="Supplier"
+						defaultValue={supplier}
+						SelectProps={{
+							native: true,
+						}}
+						style={{ borderRadius: '1px"' }}
+						sx={{ gridColumn: "span 1" }}
+						select
+						onChange={(event) => handleInput(event, setSupplier)}>
+						{supplierOptions.map((supplier) => (
+							<option
+								key={supplier.id}
+								value={supplier.id}
+							>
 								{supplier.name}
-							</MenuItem>
+							</option>
 						))}
-					</Select>
-					<Select
-						fullWidth
-						variant="filled"
-						label="Category"
-						value={category}
-						onChange={(event) => { handleInput(event, setCategory) }}
+					</TextField>
+					<TextField
 						name="category"
-						sx={{ gridColumn: "span 1", backgroundColor: 'grey' }}
-					>
-						{categoryOptions.map(category => (
-							<MenuItem key={category.id} value={category.id}>
+						defaultValue={category}
+						SelectProps={{
+							native: true,
+						}}
+						style={{ borderRadius: '1px"' }}
+						sx={{ gridColumn: "span 1" }}
+						select
+						onChange={(event) => handleInput(event, setCategory)}>
+						{categoryOptions.map((category) => (
+							<option
+								key={category.id}
+								value={category.id}
+							>
 								{category.name}
-							</MenuItem>
+							</option>
 						))}
-					</Select>
+					</TextField>
 					<TextField
 						fullWidth
 						variant="filled"
@@ -232,11 +241,11 @@ const AddNewProduct = () => {
 					/>
 
 				</Box>
-					<Box display="flex" justifyContent="end" mt="20px">
-						<Button type="submit" color="secondary" variant="contained" onClick={handleFormSubmit}>
-							Create New Product
-						</Button>
-					</Box>
+				<Box display="flex" justifyContent="end" mt="20px">
+					<Button type="submit" color="secondary" variant="contained" onClick={handleFormSubmit}>
+						Create New Product
+					</Button>
+				</Box>
 			</form>
 
 		</Box>

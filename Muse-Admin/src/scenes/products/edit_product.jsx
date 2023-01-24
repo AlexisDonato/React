@@ -1,5 +1,4 @@
 import { Box, Button, TextField } from "@mui/material";
-import { Select, MenuItem } from "@material-ui/core";
 
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -131,7 +130,7 @@ const AddNewProduct = () => {
     <Box m="20px">
       <Header title="EDIT PRODUCT" subtitle="Edit Product" />
 
-      <form onSubmit={handleFormSubmit} encType="multipart/form-data" validationSchema={validationSchema}>
+      <form onSubmit={handleFormSubmit} encType="multipart/form-data" validationschema={validationSchema}>
         <Box
           display="grid"
           gap="30px"
@@ -148,38 +147,49 @@ const AddNewProduct = () => {
             onChange={(event) => handleInput(event, setName)}
             value={name}
             name="name"
-            sx={{ gridColumn: "span 2", backgroundColor: 'grey' }}
+            style={{ backgroundColor: '#333333' }}
+            sx={{ gridColumn: "span 2", bg: 'grey', borderRadius: '2px' }}
           />
-          <Select
-            fullWidth
-            variant="filled"
-            label="Supplier"
-            value={supplier}
-            onChange={(event) => { handleInput(event, setSupplier) }}
-            name="supplier"
-            sx={{ gridColumn: "span 1", backgroundColor: 'grey' }}
-          >
-            {supplierOptions.map(supplier => (
-              <MenuItem key={supplier.id} value={supplier.id}>
-                {supplier.name}
-              </MenuItem>
-            ))}
-          </Select>
-          <Select
-            fullWidth
-            variant="filled"
-            label="Category"
-            value={category}
-            onChange={(event) => { handleInput(event, setCategory) }}
-            name="category"
-            sx={{ gridColumn: "span 1", backgroundColor: 'grey' }}
-          >
-            {categoryOptions.map(category => (
-              <MenuItem key={category.id} value={category.id}>
-                {category.name}
-              </MenuItem>
-            ))}
-          </Select>
+          <TextField 
+            name="Supplier" 
+            defaultValue={supplier}   
+            SelectProps={{
+              native: true,
+            }} 
+            helperText="Supplier"
+            style={{ borderRadius: '3px', backgroundColor: '#333333' }}
+            sx={{ gridColumn: "span 1" }}
+            select 
+              onChange={(event) => handleInput(event, setSupplier)}>
+                  {supplierOptions.map((supplier) => (
+                    <option
+                      key={supplier.id}
+                      value={supplier.id}
+                    >
+                      {supplier.name}
+                    </option>
+                  ))}
+            </TextField>
+          <TextField 
+            name="category" 
+            defaultValue={category}   
+            SelectProps={{
+              native: true,
+            }} 
+            helperText="Category"
+            style={{ borderRadius: '3px', backgroundColor: '#333333' }}
+            sx={{ gridColumn: "span 1" }}
+            select 
+              onChange={(event) => handleInput(event, setCategory)}>
+                  {categoryOptions.map((category) => (
+                    <option
+                      key={category.id}
+                      value={category.id}
+                    >
+                      {category.name}
+                    </option>
+                  ))}
+            </TextField>
           <TextField
             fullWidth
             variant="filled"
@@ -188,7 +198,8 @@ const AddNewProduct = () => {
             onChange={(event) => { handleInput(event, setDiscountRate) }}
             value={discountRate}
             name="discountRate"
-            sx={{ gridColumn: "span 1", backgroundColor: 'grey' }}
+            style={{ backgroundColor: '#333333' }}
+            sx={{ gridColumn: "span 1", bg: 'grey', borderRadius: '2px' }}
           />
           <TextField
             fullWidth
@@ -198,7 +209,8 @@ const AddNewProduct = () => {
             onChange={(event) => { handleInput(event, setPrice) }}
             value={price}
             name="price"
-            sx={{ gridColumn: "span 1", backgroundColor: 'grey' }}
+            style={{ backgroundColor: '#333333' }}
+            sx={{ gridColumn: "span 1", bg: 'grey', borderRadius: '2px' }}
           />
           <TextField
             fullWidth
@@ -208,7 +220,8 @@ const AddNewProduct = () => {
             onChange={(event) => { handleInput(event, setQuantity) }}
             value={quantity}
             name="quantity"
-            sx={{ gridColumn: "span 1", backgroundColor: 'grey' }}
+            style={{ backgroundColor: '#333333' }}
+            sx={{ gridColumn: "span 1", bg: 'grey', borderRadius: '2px' }}
           />
           <TextField
             fullWidth
@@ -218,7 +231,8 @@ const AddNewProduct = () => {
             onChange={(event) => { handleInput(event, setDescription) }}
             value={description}
             name="description"
-            sx={{ gridColumn: "span 2", backgroundColor: 'grey' }}
+            style={{ backgroundColor: '#333333' }}
+            sx={{ gridColumn: "span 2", bg: 'grey', borderRadius: '2px' }}
           />
           <TextField
             fullWidth
@@ -228,7 +242,8 @@ const AddNewProduct = () => {
             onChange={(event) => { handleInput(event, setContent) }}
             value={content}
             name="content"
-            sx={{ gridColumn: "span 2", backgroundColor: 'grey' }}
+            style={{ backgroundColor: '#333333' }}
+            sx={{ gridColumn: "span 2", bg: 'grey', borderRadius: '2px', color: 'white' }}
           />
           <TextField
             fullWidth
@@ -236,8 +251,9 @@ const AddNewProduct = () => {
             type="file"
             label="Image"
             name="image"
+            style={{ backgroundColor: '#333333' }}
             onChange={(event) => { handleFile(event, setImage) }}
-            sx={{ gridColumn: "span 2", backgroundColor: 'grey' }}
+            sx={{ gridColumn: "span 2", bg: 'grey', borderRadius: '2px' }}
             accept="image/*"
           />
           <TextField
@@ -246,8 +262,9 @@ const AddNewProduct = () => {
             type="file"
             label="Image 1"
             name="image1"
+            style={{ backgroundColor: '#333333' }}
             onChange={(event) => { handleFile(event, setImage1) }}
-            sx={{ gridColumn: "span 2", backgroundColor: 'grey' }}
+            sx={{ gridColumn: "span 2", bg: 'grey', borderRadius: '2px' }}
             accept="image/*"
           />
           <TextField
@@ -256,8 +273,9 @@ const AddNewProduct = () => {
             type="file"
             label="Image 2"
             name="image2"
+            style={{ backgroundColor: '#333333' }}
             onChange={(event) => { handleFile(event, setImage2) }}
-            sx={{ gridColumn: "span 2", backgroundColor: 'grey' }}
+            sx={{ gridColumn: "span 2", bg: 'grey', borderRadius: '2px' }}
             accept="image/*"
           />
 
