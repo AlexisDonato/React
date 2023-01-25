@@ -1,6 +1,7 @@
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import { mockTransactions } from "../../data/mockData";
+
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
@@ -14,6 +15,8 @@ import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
 
 import Calculations from "../../data/muse_calculations"
+import Carts from "../../data/muse_carts";
+
 import { useEffect, useState } from "react";
 
 
@@ -35,6 +38,9 @@ const Dashboard = () => {
   const [sumShip, setSumShip] = useState(0);
   const [users, setUsers] = useState(0);
 
+  const [carts, setCarts] = useState(0);
+
+
   useEffect(() => {
     Calculations()
       .then(val => {
@@ -55,6 +61,10 @@ const Dashboard = () => {
       })
   }, [])
 
+  useEffect(() => {
+    Carts().then(data => setCarts(data));
+
+  }, []);
 
   return (
     <Box m="20px">
@@ -94,7 +104,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={todaySales}
+            title={todaySales + " €"}
             subtitle="Today sales"
             progress="0.15"
             increase="+15%"
@@ -113,7 +123,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={sumTotal}
+            title={sumTotal + " €"}
             subtitle="Global sales"
             progress="0.26"
             increase="+26%"
@@ -132,8 +142,8 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={users}
-            subtitle="New Clients"
+            title={sumClient + " €"}
+            subtitle="Clients Turnover"
             progress="0.05"
             increase="+5%"
             icon={
@@ -151,8 +161,8 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="1 325 134"
-            subtitle="Traffic Received"
+            title={sumPro + " €"}
+            subtitle="Professionals Turnover"
             progress="0.80"
             increase="+43%"
             icon={
@@ -172,7 +182,7 @@ const Dashboard = () => {
           <Box
             mt="25px"
             p="0 30px"
-            display="flex "
+            display="flex"
             justifyContent="space-between"
             alignItems="center"
           >
@@ -189,7 +199,7 @@ const Dashboard = () => {
                 fontWeight="bold"
                 color={colors.greenAccent[500]}
               >
-                59 342,32 €
+                {sumTotal + " €"}
               </Typography>
             </Box>
             <Box>
@@ -229,6 +239,38 @@ const Dashboard = () => {
               </IconButton>
             </Box>
           </Box>
+
+          {/* {Carts().map((cart, i) => (
+            <Box
+              key={`${cart.id}-${i}`}
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              borderBottom={`4px solid ${colors.primary[500]}`}
+              p="15px"
+            >
+              <Box>
+                <Typography
+                  color={colors.greenAccent[500]}
+                  variant="h5"
+                  fontWeight="600"
+                >
+                  {cart.clientOrderId}
+                </Typography>
+                <Typography color={colors.grey[100]}>
+                  {cart.user.email}
+                </Typography>
+              </Box>
+              <Box color={colors.grey[100]}>{cart.orderDate}</Box>
+              <Box
+                backgroundColor={colors.greenAccent[500]}
+                p="5px 10px"
+                borderRadius="4px"
+              >
+                {cart.total} €
+              </Box>
+            </Box> */}
+
           {mockTransactions.map((transaction, i) => (
             <Box
               key={`${transaction.txId}-${i}`}

@@ -87,6 +87,7 @@ const Calculations = () => {
                 data.users = users.length;
         }));
 
+
         Promise.all(promises).then(() => {
             resolve(data)
         })
