@@ -13,9 +13,48 @@ import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
 
+import Calculations from "../../data/muse_calculations"
+import { useEffect, useState } from "react";
+
+
+// import { Today } from "@mui/icons-material";
+
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
+  const [todaySales, setTodaySales] = useState(0)
+  const [sumTotal, setSumTotal] = useState(0);
+  const [sumVal, setSumVal] = useState(0);
+  const [pro, setPro] = useState(0);
+  const [sumPro, setSumPro] = useState(0);
+  const [sumClient, setSumClient] = useState(0);
+  const [todate, setTodate] = useState(new Date());
+  const [sumQuant, setSumQuant] = useState(0);
+  const [sumProd, setSumProd] = useState(0);
+  const [sumShip, setSumShip] = useState(0);
+  const [users, setUsers] = useState(0);
+
+  useEffect(() => {
+    Calculations()
+      .then(val => {
+        console.log(val)
+        console.log(val["users"])
+
+        setTodaySales(val.todaySales)
+        setSumTotal(val.sumTotal.toFixed(2))
+        setSumVal(val.sumVal)
+        setPro(val.pro)
+        setSumPro(val.sumPro)
+        setSumClient(val.sumClient.toFixed(2))
+        setTodate(val.todate)
+        setSumQuant(val.sumQuant)
+        setSumProd(val.sumProd)
+        setSumShip(val.sumShip)
+        setUsers(val.users)
+      })
+  }, [])
+
 
   return (
     <Box m="20px">
@@ -55,7 +94,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="12 361,35 €"
+            title={todaySales}
             subtitle="Today sales"
             progress="0.15"
             increase="+15%"
@@ -74,7 +113,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="431 225 €"
+            title={sumTotal}
             subtitle="Global sales"
             progress="0.26"
             increase="+26%"
@@ -93,7 +132,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="32,441"
+            title={users}
             subtitle="New Clients"
             progress="0.05"
             increase="+5%"
@@ -233,13 +272,13 @@ const Dashboard = () => {
           <Typography variant="h5" fontWeight="600">
             Campaign
           </Typography>
-            <Box align="right">
-              <IconButton>
-                <DownloadOutlinedIcon
-                  sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
-                />
-              </IconButton>
-            </Box>
+          <Box align="right">
+            <IconButton>
+              <DownloadOutlinedIcon
+                sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
+              />
+            </IconButton>
+          </Box>
           <Box
             display="flex"
             flexDirection="column"
@@ -269,13 +308,13 @@ const Dashboard = () => {
           >
             Sales Quantity
           </Typography>
-            <Box align="right">
-              <IconButton>
-                <DownloadOutlinedIcon
-                  sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
-                />
-              </IconButton>
-            </Box>
+          <Box align="right">
+            <IconButton>
+              <DownloadOutlinedIcon
+                sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
+              />
+            </IconButton>
+          </Box>
           <Box height="250px" mt="-20px">
             <BarChart isDashboard={true} />
           </Box>
