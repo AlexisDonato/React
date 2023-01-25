@@ -13,6 +13,7 @@ import Header from "../../components/Header";
 import "../../components/style.css"
 
 import Products from "../../data/muse_products";
+import { Margin } from "@mui/icons-material";
 
 
 const ProductsIndex = () => {
@@ -27,7 +28,7 @@ const ProductsIndex = () => {
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.8 },
-    { field: "name", headerName: "Name", editable: true },
+    { field: "name", headerName: "Name", editable: true, },
     {
       field: "supplier",
       headerName: "Supplier",
@@ -91,7 +92,7 @@ const ProductsIndex = () => {
         return(
         <Box>
           <Link to={`/edit_product/${param.row.id}`} style={{ textDecoration: "none" }}>
-          <IconButton title="Edit" aria-label="edit">
+          <IconButton title="Edit" aria-label="edit" color="secondary">
             <CreateIcon />
           </IconButton>
           </Link>
@@ -136,8 +137,8 @@ const ProductsIndex = () => {
         }}
       >
         <Link to="/add_new_product" style={{ textDecoration: "none" }}>
-          <IconButton title="Add new" aria-label="new">
-            <AddCircleOutlineIcon />Add New
+          <IconButton title="Add new" aria-label="new" color="warning">
+            <AddCircleOutlineIcon color="warning" style={{ margin: "10px" }} />Add New Product
           </IconButton>
         </Link>
         <DataGrid

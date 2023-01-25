@@ -1,4 +1,4 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 
 import { useNavigate } from 'react-router-dom';
 
@@ -233,39 +233,6 @@ const AddNewProduct = () => {
 						style={{ borderRadius: '3px', backgroundColor: '#333333' }}
 						sx={{ gridColumn: "span 4" }}
 					/>
-					{/* <TextField
-						fullWidth
-						variant="filled"
-						type="file"
-						label="Image"
-						name="image"
-						onChange={(event) => { handleFile(event, setImage) }}
-						style={{ borderRadius: '3px', backgroundColor: '#333333' }}
-						sx={{ gridColumn: "span 2" }}
-						accept="image/*"
-					/>
-					<TextField
-						fullWidth
-						variant="filled"
-						type="file"
-						label="Image 1"
-						name="image1"
-						onChange={(event) => { handleFile(event, setImage1) }}
-						style={{ borderRadius: '3px', backgroundColor: '#333333' }}
-						sx={{ gridColumn: "span 2" }}
-						accept="image/*"
-					/>
-					<TextField
-						fullWidth
-						variant="filled"
-						type="file"
-						label="Image 2"
-						name="image2"
-						onChange={(event) => { handleFile(event, setImage2) }}
-						style={{ borderRadius: '3px', backgroundColor: '#333333' }}
-						sx={{ gridColumn: "span 2" }}
-						accept="image/*"
-					/> */}
 					<div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "10px" }}>
 						<Button
 							variant="contained"

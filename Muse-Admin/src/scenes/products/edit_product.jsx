@@ -1,4 +1,4 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -263,39 +263,6 @@ const AddNewProduct = () => {
             style={{ backgroundColor: '#333333' }}
             sx={{ gridColumn: "span 4", bg: 'grey', borderRadius: '2px', color: 'white' }}
           />
-          {/* <TextField
-            fullWidth
-            variant="filled"
-            type="file"
-            label="Image"
-            name="image"
-            style={{ backgroundColor: '#333333' }}
-            onChange={(event) => { handleFile(event, setImage) }}
-            sx={{ gridColumn: "span 2", bg: 'grey', borderRadius: '2px' }}
-            accept="image/*"
-          />
-          <TextField
-            fullWidth
-            variant="filled"
-            type="file"
-            label="Image 1"
-            name="image1"
-            style={{ backgroundColor: '#333333' }}
-            onChange={(event) => { handleFile(event, setImage1) }}
-            sx={{ gridColumn: "span 2", bg: 'grey', borderRadius: '2px' }}
-            accept="image/*"
-          />
-          <TextField
-            fullWidth
-            variant="filled"
-            type="file"
-            label="Image 2"
-            name="image2"
-            style={{ backgroundColor: '#333333' }}
-            onChange={(event) => { handleFile(event, setImage2) }}
-            sx={{ gridColumn: "span 2", bg: 'grey', borderRadius: '2px' }}
-            accept="image/*"
-          /> */}
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "10px" }}>
             <Button
               variant="contained"
@@ -346,28 +313,29 @@ const AddNewProduct = () => {
             {image2 && <img src={URL.createObjectURL(image2)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
           </div>
         </Box>
+      </form>
+      <div style={{ position: "relative" }}>
         <Box display="flex" justifyContent="end" mt="20px">
           <Button type="submit" color="secondary" variant="contained" onClick={handleFormSubmit}>
             Edit Product
           </Button>
         </Box>
-      </form>
-
-      <Box display="flex" justifyContent="end" mt="20px">
-        <Button
-          onClick={() => handleDelete(id)}
-          color="secondary" variant="contained"
-          style={{ background: "#BF1B1B", ":hover": { background: "#8B0000" } }}>
-          Delete Product
-        </Button>
-      </Box>
-      <Box display="flex" justifyContent="end" mt="20px">
-        <Button
-          onClick={() => navigate(-1)}
-          color="secondary" variant="contained">
-          Back
-        </Button>
-      </Box>
+        <Box display="flex" justifyContent="end" mt="20px">
+          <Button
+            onClick={() => handleDelete(id)}
+            color="error" variant="contained"
+            >
+            Delete Product
+          </Button>
+        </Box>
+        <Box display="flex" justifyContent="end" mt="20px">
+          <Button
+            onClick={() => navigate(-1)}
+            color="secondary" variant="contained">
+            Back
+          </Button>
+        </Box>
+      </div>
     </Box>
   );
 };
