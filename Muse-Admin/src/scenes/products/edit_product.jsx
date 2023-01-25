@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -10,6 +10,7 @@ import Header from "../../components/Header";
 import axios from "axios";
 
 import { useState, useEffect } from "react";
+import { red } from "@mui/material/colors";
 
 // import { handleDelete } from "./delete_product";
 
@@ -29,6 +30,9 @@ const AddNewProduct = () => {
   const [image, setImage] = useState();
   const [image1, setImage1] = useState();
   const [image2, setImage2] = useState();
+  const [fileName, setFileName] = useState("");
+  const [fileName1, setFileName1] = useState("");
+  const [fileName2, setFileName2] = useState("");
 
   const [supplierOptions, setSupplierOptions] = useState([]);
   const [categoryOptions, setCategoryOptions] = useState([]);
@@ -78,14 +82,28 @@ const AddNewProduct = () => {
   }
 
   const handleFile = (event, setState) => {
-    setState(event.currentTarget.files[0]);
+    const file = event.currentTarget.files[0];
+    setState(file);
+    setFileName(file.name);
   }
+
+const handleFile1 = (event, setState, setFileName1) => {
+    const file = event.currentTarget.files[0];
+    setState(file);
+    setFileName1(file.name);
+}
+const handleFile2 = (event, setState, setFileName2) => {
+    const file = event.currentTarget.files[0];
+    setState(file);
+    setFileName2(file.name);
+}
 
   useEffect(() => {
     axios.get("/api/products/" + id).then((response) => {
       setName(response.data.name);
       setSupplier(response.data.supplier);
       setCategory(response.data.category);
+      console.log(response.data.category);
       setDiscountRate(response.data.discountRate);
       setPrice(response.data.price);
       setQuantity(response.data.quantity);
@@ -150,46 +168,46 @@ const AddNewProduct = () => {
             style={{ backgroundColor: '#333333' }}
             sx={{ gridColumn: "span 2", bg: 'grey', borderRadius: '2px' }}
           />
-          <TextField 
-            name="Supplier" 
-            defaultValue={supplier}   
+          <TextField
+            name="Supplier"
+            defaultValue={supplier}
             SelectProps={{
               native: true,
-            }} 
+            }}
             helperText="Supplier"
             style={{ borderRadius: '3px', backgroundColor: '#333333' }}
             sx={{ gridColumn: "span 1" }}
-            select 
-              onChange={(event) => handleInput(event, setSupplier)}>
-                  {supplierOptions.map((supplier) => (
-                    <option
-                      key={supplier.id}
-                      value={"/api/suppliers/"+supplier.id}
-                    >
-                      {supplier.name}
-                    </option>
-                  ))}
-            </TextField>
-          <TextField 
-            name="category" 
-            defaultValue={category}   
+            select
+            onChange={(event) => handleInput(event, setSupplier)}>
+            {supplierOptions.map((supplier) => (
+              <option
+                key={supplier.id}
+                value={"/api/suppliers/" + supplier.id}
+              >
+                {supplier.name}
+              </option>
+            ))}
+          </TextField>
+          <TextField
+            name="category"
+            defaultValue={category}
             SelectProps={{
               native: true,
-            }} 
+            }}
             helperText="Category"
             style={{ borderRadius: '3px', backgroundColor: '#333333' }}
             sx={{ gridColumn: "span 1" }}
-            select 
-              onChange={(event) => handleInput(event, setCategory)}>
-                  {categoryOptions.map((category) => (
-                    <option
-                      key={category.id}
-                      value={"/api/categories/"+category.id}
-                    >
-                      {category.name}
-                    </option>
-                  ))}
-            </TextField>
+            select
+            onChange={(event) => handleInput(event, setCategory)}>
+            {categoryOptions.map((category) => (
+              <option
+                key={category.id}
+                value={"/api/categories/" + category.id}
+              >
+                {category.name}
+              </option>
+            ))}
+          </TextField>
           <TextField
             fullWidth
             variant="filled"
@@ -232,7 +250,7 @@ const AddNewProduct = () => {
             value={description}
             name="description"
             style={{ backgroundColor: '#333333' }}
-            sx={{ gridColumn: "span 2", bg: 'grey', borderRadius: '2px' }}
+            sx={{ gridColumn: "span 4", bg: 'grey', borderRadius: '2px' }}
           />
           <TextField
             fullWidth
@@ -243,9 +261,9 @@ const AddNewProduct = () => {
             value={content}
             name="content"
             style={{ backgroundColor: '#333333' }}
-            sx={{ gridColumn: "span 2", bg: 'grey', borderRadius: '2px', color: 'white' }}
+            sx={{ gridColumn: "span 4", bg: 'grey', borderRadius: '2px', color: 'white' }}
           />
-          <TextField
+          {/* <TextField
             fullWidth
             variant="filled"
             type="file"
@@ -277,8 +295,49 @@ const AddNewProduct = () => {
             onChange={(event) => { handleFile(event, setImage2) }}
             sx={{ gridColumn: "span 2", bg: 'grey', borderRadius: '2px' }}
             accept="image/*"
-          />
-
+          /> */}
+          <Button
+            variant="contained"
+            component="label"
+            style={{ border: fileName ? "1px solid green" : "1px solid grey", color: fileName ? 'green' : 'white' }}
+          >
+            {fileName ? fileName : "Image upload"}
+            <input
+              type="file"
+              hidden
+              accept="image/*"
+              onChange={(event) => { handleFile(event, setImage, setFileName) }}
+            />
+          </Button>
+          {/* <Typography> {fileName}</Typography> */}
+          <Button
+            variant="contained"
+            component="label"
+            style={{ border: fileName1 ? "1px solid green" : "1px solid grey", color: fileName1 ? 'green' : 'white' }}
+          >
+            {fileName1 ? fileName1 : "Image 1 upload"}
+            <input
+              type="file"
+              hidden
+              accept="image/*"
+              onChange={(event) => { handleFile1(event, setImage1, setFileName1) }}
+            />
+          </Button>
+          {/* <Typography> {fileName1}</Typography> */}
+          <Button
+            variant="contained"
+            component="label"
+            style={{ border: fileName2 ? "1px solid green" : "1px solid grey", color: fileName2 ? 'green' : 'white' }}
+          >
+            {fileName2 ? fileName2 : "Image 2 upload"}
+            <input
+              type="file"
+              hidden
+              accept="image/*"
+              onChange={(event) => { handleFile2(event, setImage2, setFileName2) }}
+            />
+          </Button>
+          {/* <Typography> {fileName2}</Typography> */}
         </Box>
         <Box display="flex" justifyContent="end" mt="20px">
           <Button type="submit" color="secondary" variant="contained" onClick={handleFormSubmit}>
@@ -290,7 +349,8 @@ const AddNewProduct = () => {
       <Box display="flex" justifyContent="end" mt="20px">
         <Button
           onClick={() => handleDelete(id)}
-          color="secondary" variant="contained">
+          color="secondary" variant="contained"
+          style={{background: "#BF1B1B", ":hover": {background: "#8B0000"}}}>
           Delete Product
         </Button>
       </Box>
