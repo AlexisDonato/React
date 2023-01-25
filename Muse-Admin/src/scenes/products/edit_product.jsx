@@ -87,16 +87,16 @@ const AddNewProduct = () => {
     setFileName(file.name);
   }
 
-const handleFile1 = (event, setState, setFileName1) => {
+  const handleFile1 = (event, setState, setFileName1) => {
     const file = event.currentTarget.files[0];
     setState(file);
     setFileName1(file.name);
-}
-const handleFile2 = (event, setState, setFileName2) => {
+  }
+  const handleFile2 = (event, setState, setFileName2) => {
     const file = event.currentTarget.files[0];
     setState(file);
     setFileName2(file.name);
-}
+  }
 
   useEffect(() => {
     axios.get("/api/products/" + id).then((response) => {
@@ -296,48 +296,55 @@ const handleFile2 = (event, setState, setFileName2) => {
             sx={{ gridColumn: "span 2", bg: 'grey', borderRadius: '2px' }}
             accept="image/*"
           /> */}
-          <Button
-            variant="contained"
-            component="label"
-            style={{ border: fileName ? "1px solid green" : "1px solid grey", color: fileName ? 'green' : 'white' }}
-          >
-            {fileName ? fileName : "Image upload"}
-            <input
-              type="file"
-              hidden
-              accept="image/*"
-              onChange={(event) => { handleFile(event, setImage, setFileName) }}
-            />
-          </Button>
-          {/* <Typography> {fileName}</Typography> */}
-          <Button
-            variant="contained"
-            component="label"
-            style={{ border: fileName1 ? "1px solid green" : "1px solid grey", color: fileName1 ? 'green' : 'white' }}
-          >
-            {fileName1 ? fileName1 : "Image 1 upload"}
-            <input
-              type="file"
-              hidden
-              accept="image/*"
-              onChange={(event) => { handleFile1(event, setImage1, setFileName1) }}
-            />
-          </Button>
-          {/* <Typography> {fileName1}</Typography> */}
-          <Button
-            variant="contained"
-            component="label"
-            style={{ border: fileName2 ? "1px solid green" : "1px solid grey", color: fileName2 ? 'green' : 'white' }}
-          >
-            {fileName2 ? fileName2 : "Image 2 upload"}
-            <input
-              type="file"
-              hidden
-              accept="image/*"
-              onChange={(event) => { handleFile2(event, setImage2, setFileName2) }}
-            />
-          </Button>
-          {/* <Typography> {fileName2}</Typography> */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "10px" }}>
+            <Button
+              variant="contained"
+              component="label"
+              style={{ border: fileName ? "1px solid green" : "1px solid grey", color: fileName ? 'lightgreen' : 'white' }}
+            >
+              {fileName ? fileName : "Image upload"}
+              <input
+                type="file"
+                hidden
+                accept="image/*"
+                onChange={(event) => { handleFile(event, setImage, setFileName) }}
+              />
+            </Button>
+            {image && <img src={URL.createObjectURL(image)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "10px" }}>
+            <Button
+              variant="contained"
+              component="label"
+              style={{ border: fileName1 ? "1px solid green" : "1px solid grey", color: fileName1 ? 'lightgreen' : 'white' }}
+            >
+              {fileName1 ? fileName1 : "Image 1 upload"}
+              <input
+                type="file"
+                hidden
+                accept="image/*"
+                onChange={(event) => { handleFile1(event, setImage1, setFileName1) }}
+              />
+            </Button>
+            {image1 && <img src={URL.createObjectURL(image1)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "10px" }}>
+            <Button
+              variant="contained"
+              component="label"
+              style={{ border: fileName2 ? "1px solid green" : "1px solid grey", color: fileName2 ? 'lightgreen' : 'white' }}
+            >
+              {fileName2 ? fileName2 : "Image 2 upload"}
+              <input
+                type="file"
+                hidden
+                accept="image/*"
+                onChange={(event) => { handleFile2(event, setImage2, setFileName2) }}
+              />
+            </Button>
+            {image2 && <img src={URL.createObjectURL(image2)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
+          </div>
         </Box>
         <Box display="flex" justifyContent="end" mt="20px">
           <Button type="submit" color="secondary" variant="contained" onClick={handleFormSubmit}>
@@ -350,7 +357,7 @@ const handleFile2 = (event, setState, setFileName2) => {
         <Button
           onClick={() => handleDelete(id)}
           color="secondary" variant="contained"
-          style={{background: "#BF1B1B", ":hover": {background: "#8B0000"}}}>
+          style={{ background: "#BF1B1B", ":hover": { background: "#8B0000" } }}>
           Delete Product
         </Button>
       </Box>
