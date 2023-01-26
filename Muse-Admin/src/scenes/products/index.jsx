@@ -13,7 +13,6 @@ import Header from "../../components/Header";
 import "../../components/style.css"
 
 import Products from "../../data/muse_products";
-import { Margin } from "@mui/icons-material";
 
 
 const ProductsIndex = () => {
@@ -28,7 +27,7 @@ const ProductsIndex = () => {
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.8 },
-    { field: "name", headerName: "Name", editable: true, },
+    { field: "name", headerName: "Name", editable: true },
     {
       field: "supplier",
       headerName: "Supplier",

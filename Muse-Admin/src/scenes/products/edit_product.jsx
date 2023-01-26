@@ -10,9 +10,6 @@ import Header from "../../components/Header";
 import axios from "axios";
 
 import { useState, useEffect } from "react";
-import { red } from "@mui/material/colors";
-
-// import { handleDelete } from "./delete_product";
 
 const AddNewProduct = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
@@ -50,11 +47,11 @@ const AddNewProduct = () => {
       content: content,
       discountRate: discountRate,
       quantity: parseInt(quantity),
+      supplier: supplier,
+      category: category,
       // image: image,
       // image1: image1,
       // image2: image2,
-      supplier: supplier,
-      category: category,
     }
 
 
@@ -325,7 +322,7 @@ const AddNewProduct = () => {
         </Box>
         <Box display="flex" justifyContent="end" mt="20px">
           <Button
-            onClick={() => handleDelete(id)}
+            onClick={() => window.confirm('Are you sure you wish to delete this item?') ? handleDelete(id) : navigate(0)}
             color="error" variant="contained"
             >
             Delete Product
