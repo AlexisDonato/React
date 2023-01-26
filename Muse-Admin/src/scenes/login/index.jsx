@@ -26,7 +26,7 @@ const Login = () => {
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "10px" }}>
                 <TextField
                     label="Email"
-                    type="text"
+                    type="email"
                     value={email}
                     onChange={handleEmailChange}
                     style={{backgroundColor: "darkgrey", marginBottom: "20px", marginTop: "100px", width: "400px"}}
