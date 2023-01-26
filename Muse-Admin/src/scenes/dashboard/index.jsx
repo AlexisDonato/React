@@ -1,6 +1,6 @@
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
-import { mockTransactions } from "../../data/mockData";
+import Moment from 'moment';
 
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
@@ -264,7 +264,7 @@ const Dashboard = () => {
                   {cart.clientOrderId}
                   </Typography>
                 </Box>
-                <Box color={colors.grey[100]}>{cart.orderDate}</Box>
+                <Box color={colors.grey[100]}>{Moment(cart.orderDate).format('DD-MM-YYYY')}</Box>
                 <Box
                   backgroundColor={colors.greenAccent[500]}
                   p="5px 10px"
