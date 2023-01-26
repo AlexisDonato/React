@@ -5,8 +5,8 @@ import { mockTransactions } from "../../data/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import TrafficIcon from "@mui/icons-material/Traffic";
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import Header from "../../components/Header";
 import LineChart from "../../components/LineChart";
 import GeographyChart from "../../components/GeographyChart";
@@ -38,21 +38,20 @@ const Dashboard = () => {
   const [sumShip, setSumShip] = useState(0);
   const [users, setUsers] = useState(0);
 
-  const [carts, setCarts] = useState(0);
+  const [carts, setCarts] = useState([]);
+
+  console.log(carts);
 
   let fr = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
 
   useEffect(() => {
     Calculations()
       .then(val => {
-        console.log(val)
-        console.log(val["users"])
-
         setTodaySales(val.todaySales)
         setSumTotal(val.sumTotal.toFixed(2))
         setSumVal(val.sumVal)
         setPro(val.pro)
-        setSumPro(val.sumPro)
+        setSumPro(val.sumPro.toFixed(2))
         setSumClient(val.sumClient.toFixed(2))
         setTodate(val.todate)
         setSumQuant(val.sumQuant)
@@ -107,8 +106,8 @@ const Dashboard = () => {
           <StatBox
             title={fr.format(todaySales)}
             subtitle="Today sales"
-            progress="0.15"
-            increase="+15%"
+            progress={todaySales / sumTotal}
+            increase={todaySales / sumTotal + " %"}
             icon={
               <QueryStatsIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -126,8 +125,8 @@ const Dashboard = () => {
           <StatBox
             title={fr.format(sumTotal)}
             subtitle="Global sales"
-            progress="0.26"
-            increase="+26%"
+            progress={todaySales / sumTotal}
+            increase={todaySales / sumTotal + " %"}
             icon={
               <PointOfSaleIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -145,10 +144,10 @@ const Dashboard = () => {
           <StatBox
             title={fr.format(sumClient)}
             subtitle="Clients Turnover"
-            progress="0.05"
-            increase="+5%"
+            progress={sumClient / sumTotal}
+            increase={((sumClient / sumTotal) * 100).toFixed(2) + " %"}
             icon={
-              <PersonAddIcon
+              <EmojiPeopleIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -164,10 +163,10 @@ const Dashboard = () => {
           <StatBox
             title={fr.format(sumPro)}
             subtitle="Professionals Turnover"
-            progress="0.80"
-            increase="+43%"
+            progress={sumPro / sumTotal}
+            increase={((sumPro / sumTotal) * 100).toFixed(2) + " %"}
             icon={
-              <TrafficIcon
+              <PrecisionManufacturingIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -241,7 +240,8 @@ const Dashboard = () => {
             </Box>
           </Box>
 
-          {/* {Carts().map((cart, i) => (
+          {carts.forEach((cart, i) => (
+            
             <Box
               key={`${cart.id}-${i}`}
               display="flex"
@@ -268,11 +268,11 @@ const Dashboard = () => {
                 p="5px 10px"
                 borderRadius="4px"
               >
-                {cart.total} €
+                { fr.format(cart.total ? cart.total : "-")}
               </Box>
-            </Box> */}
+            </Box>
 
-          {mockTransactions.map((transaction, i) => (
+           /* {mockTransactions.map((transaction, i) => (
             <Box
               key={`${transaction.txId}-${i}`}
               display="flex"
@@ -301,7 +301,7 @@ const Dashboard = () => {
               >
                 {transaction.cost} €
               </Box>
-            </Box>
+            </Box> */
           ))}
         </Box>
 
