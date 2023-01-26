@@ -8,6 +8,8 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useTheme } from "@mui/material";
 import { useState, useEffect } from "react";
 
+import Moment from 'moment';
+
 import { Link } from "react-router-dom";
 
 import Header from "../../components/Header";
@@ -62,7 +64,10 @@ const CartsIndex = () => {
     {
       field: "orderDate",
       headerName: "OrderDate",
-      editable: true
+      editable: true,
+      renderCell: (params) => (
+        params.value ? Moment(params.value).format('DD-MM-YYYY') : "-"
+      )
     },
     {
       field: "total",
@@ -76,6 +81,9 @@ const CartsIndex = () => {
     {
       field: "shipmentDate",
       headerName: "Shipment Date",
+      renderCell: (params) => (
+        params.value ? Moment(params.value).format('DD-MM-YYYY') : "-"
+      )
     },
     {
       field: "billingAddress",

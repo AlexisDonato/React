@@ -4,6 +4,8 @@ import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard";
 
+import Login from "./scenes/login";
+
 import Users from "./scenes/users";
 import Addresses from "./scenes/addresses";
 import Suppliers from "./scenes/suppliers";
@@ -43,6 +45,9 @@ function App() {
             <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
               <Route path="/" element={<Dashboard />} />
+
+              <Route path="/login" element={<Login />} />
+
               <Route path="/test" element={<Test />} />
 
               <Route path="/users" element={<Users />} />
