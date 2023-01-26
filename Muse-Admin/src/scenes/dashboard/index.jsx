@@ -40,6 +40,7 @@ const Dashboard = () => {
 
   const [carts, setCarts] = useState(0);
 
+  let fr = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
 
   useEffect(() => {
     Calculations()
@@ -104,7 +105,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={todaySales + " €"}
+            title={fr.format(todaySales)}
             subtitle="Today sales"
             progress="0.15"
             increase="+15%"
@@ -123,7 +124,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={sumTotal + " €"}
+            title={fr.format(sumTotal)}
             subtitle="Global sales"
             progress="0.26"
             increase="+26%"
@@ -142,7 +143,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={sumClient + " €"}
+            title={fr.format(sumClient)}
             subtitle="Clients Turnover"
             progress="0.05"
             increase="+5%"
@@ -161,7 +162,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={sumPro + " €"}
+            title={fr.format(sumPro)}
             subtitle="Professionals Turnover"
             progress="0.80"
             increase="+43%"
@@ -199,7 +200,7 @@ const Dashboard = () => {
                 fontWeight="bold"
                 color={colors.greenAccent[500]}
               >
-                {sumTotal + " €"}
+                {fr.format(sumTotal)}
               </Typography>
             </Box>
             <Box>
