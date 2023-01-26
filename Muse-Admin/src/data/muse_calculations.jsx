@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
 
 const Calculations = () => {
@@ -18,8 +17,6 @@ const Calculations = () => {
         }
 
         let promises = [];
-
-
 
         promises.push(axios.get("/api/carts", {
             headers: {

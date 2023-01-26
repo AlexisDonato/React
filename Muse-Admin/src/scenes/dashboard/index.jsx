@@ -313,13 +313,10 @@ const Dashboard = () => {
           p="30px"
         >
           <Typography variant="h5" fontWeight="600">
-            Campaign
+            Turnovers per customer type
           </Typography>
           <Box align="right">
             <IconButton>
-              <DownloadOutlinedIcon
-                sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
-              />
             </IconButton>
           </Box>
           <Box
@@ -328,15 +325,15 @@ const Dashboard = () => {
             alignItems="center"
             mt="25px"
           >
-            <ProgressCircle size="125" />
+            <ProgressCircle size="125" progress={sumPro/sumTotal}/>
             <Typography
               variant="h5"
               color={colors.greenAccent[500]}
               sx={{ mt: "15px" }}
             >
-              48 352 € revenue generated
+              {fr.format(sumPro) + " (PRO)"}
             </Typography>
-            <Typography>Includes extra misc expenditures and costs</Typography>
+            <Typography color={colors.blueAccent[500]}>{fr.format(sumClient) + " (CLIENTS)"}</Typography>
           </Box>
         </Box>
         <Box
@@ -353,9 +350,6 @@ const Dashboard = () => {
           </Typography>
           <Box align="right">
             <IconButton>
-              <DownloadOutlinedIcon
-                sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
-              />
             </IconButton>
           </Box>
           <Box height="250px" mt="-20px">

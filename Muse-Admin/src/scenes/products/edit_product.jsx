@@ -99,11 +99,11 @@ const AddNewProduct = () => {
   }
 
   useEffect(() => {
+
     axios.get("/api/products/" + id).then((response) => {
       setName(response.data.name);
       setSupplier(response.data.supplier);
       setCategory(response.data.category);
-      console.log(response.data.category);
       setDiscountRate(response.data.discountRate);
       setPrice(response.data.price);
       setQuantity(response.data.quantity);
@@ -112,6 +112,7 @@ const AddNewProduct = () => {
       setImage(response.data.image);
       setImage1(response.data.image1);
       setImage2(response.data.image2);
+      console.log(response.data);
     })
     axios
       .get("/api/suppliers", {
@@ -128,7 +129,9 @@ const AddNewProduct = () => {
         "Accept": "application/json"
       }
     })
-      .then(response => setCategoryOptions(response.data));
+      .then(response => {setCategoryOptions(response.data)
+        console.log(response.data);
+      });
   }, []);
 
   const handleDelete = (id) => {
@@ -277,7 +280,7 @@ const AddNewProduct = () => {
                 onChange={(event) => { handleFile(event, setImage, setFileName) }}
               />
             </Button>
-            {image && <img src={URL.createObjectURL(image)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
+            {image && <img alt="" title={fileName} src={URL.createObjectURL(image)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "10px" }}>
@@ -294,7 +297,7 @@ const AddNewProduct = () => {
                 onChange={(event) => { handleFile1(event, setImage1, setFileName1) }}
               />
             </Button>
-            {image1 && <img src={URL.createObjectURL(image1)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
+            {image1 && <img alt="" title={fileName1} src={URL.createObjectURL(image1)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
           </div>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "10px" }}>
             <Button
@@ -310,7 +313,7 @@ const AddNewProduct = () => {
                 onChange={(event) => { handleFile2(event, setImage2, setFileName2) }}
               />
             </Button>
-            {image2 && <img src={URL.createObjectURL(image2)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
+            {image2 && <img alt="" title={fileName2} src={URL.createObjectURL(image2)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
           </div>
         </Box>
       </form>
