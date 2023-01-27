@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
-import Dashboard from "./scenes/dashboard";
 
+import Dashboard from "./scenes/dashboard";
 import Login from "./scenes/login";
 
 import Users from "./scenes/users";
@@ -30,10 +30,24 @@ import { ColorModeContext, useMode } from "./theme";
 import Calendar from "./scenes/calendar/calendar";
 
 import Test from "./Test";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 function App() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
+  const navigate = useNavigate();
+
+  axios.interceptors.response.use(response => {
+    return response
+  },
+  error => {
+    if(error.response.data.code === 401 || 403 ) {
+      window.alert('Unauthorized !')
+      navigate("/")
+    }
+  })
+  
 
   return (
     <ColorModeContext.Provider value={colorMode}>
@@ -44,9 +58,10 @@ function App() {
           <main className="content">
             <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
-              <Route path="/" element={<Dashboard />} />
 
-              <Route path="/login" element={<Login />} />
+              <Route path="/" element={<Login />} />
+
+              <Route path="/dashboard" element={<Dashboard />} />
 
               <Route path="/test" element={<Test />} />
 
