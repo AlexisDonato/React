@@ -24,7 +24,7 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
-import axios from "axios";
+import Login from '../../scenes/login';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -117,7 +117,7 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  k6
+                  {Login.email}
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
                   VIP Admin

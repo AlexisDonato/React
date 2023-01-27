@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Select } from "@mui/material";
 
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -47,8 +47,8 @@ const AddNewProduct = () => {
       content: content,
       discountRate: discountRate,
       quantity: parseInt(quantity),
-      supplier: supplier,
-      category: category,
+      supplier: "/api/suppliers/" + supplier.id,
+      category: "/api/categories/" + category.id,
       // image: image,
       // image1: image1,
       // image2: image2,
@@ -111,6 +111,7 @@ const AddNewProduct = () => {
       setImage2(response.data.image2);
       console.log(response.data);
     })
+
     axios
       .get("/api/suppliers", {
         headers: {
@@ -121,6 +122,7 @@ const AddNewProduct = () => {
         console.log(response.data);
         setSupplierOptions(response.data)
       });
+
     axios.get("/api/categories", {
       headers: {
         "Accept": "application/json"
@@ -179,18 +181,19 @@ const AddNewProduct = () => {
             sx={{ gridColumn: "span 1" }}
             select
             onChange={(event) => handleInput(event, setSupplier)}>
-            {supplierOptions.map((supplier) => (
+            {supplierOptions.map((supplierOption) => (
               <option
-                key={supplier.id}
-                value={"/api/suppliers/" + supplier.id}
+                selected={supplierOption.name === supplier.name}
+                key={supplierOption.id}
+                value={"/api/suppliers/" + supplierOption.id}
               >
-                {supplier.name}
+                {supplierOption.name}
               </option>
             ))}
           </TextField>
           <TextField
             name="category"
-            defaultValue={category}
+            defaultValue={"/api/categories/" + category.id}
             SelectProps={{
               native: true,
             }}
@@ -199,12 +202,13 @@ const AddNewProduct = () => {
             sx={{ gridColumn: "span 1" }}
             select
             onChange={(event) => handleInput(event, setCategory)}>
-            {categoryOptions.map((category) => (
+            {categoryOptions.map((categoryOption) => (
               <option
-                key={category.id}
-                value={"/api/categories/" + category.id}
+                selected={categoryOption.name === category.name}
+                key={categoryOption.id}
+                value={"/api/categories/" + categoryOption.id}
               >
-                {category.name}
+                {categoryOption.name}
               </option>
             ))}
           </TextField>

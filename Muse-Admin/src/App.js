@@ -31,7 +31,6 @@ import Calendar from "./scenes/calendar/calendar";
 
 import Test from "./Test";
 import axios from "axios";
-import Cookies from "js-cookie";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -42,9 +41,9 @@ function App() {
     return response
   },
   error => {
-    if(error.response.data.code === 401 || 403 ) {
-      window.alert('Unauthorized !')
-      navigate("/")
+    if(error.response.data.code === 401 || error.response.data.code === 403 ) {
+      window.alert('Unauthorized !');
+      navigate("/");
     }
   })
   

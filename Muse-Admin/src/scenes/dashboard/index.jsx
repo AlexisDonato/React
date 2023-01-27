@@ -19,9 +19,6 @@ import Carts from "../../data/muse_carts";
 
 import { useEffect, useState } from "react";
 
-
-// import { Today } from "@mui/icons-material";
-
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -68,6 +65,7 @@ const Dashboard = () => {
 
   return (
     <Box m="20px">
+
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
@@ -95,6 +93,7 @@ const Dashboard = () => {
         gridAutoRows="140px"
         gap="20px"
       >
+        
         {/* ROW 1 */}
         <Box
           gridColumn="span 3"

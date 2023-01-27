@@ -1,9 +1,8 @@
-import { Box, Button, colors, TextField } from "@mui/material";
-import React, { useEffect, useState } from 'react';
+import { Box, Button, TextField } from "@mui/material";
+import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from 'js-cookie'
-import { Cookie } from "@mui/icons-material";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -29,9 +28,6 @@ const Login = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Code pour vérifier les informations d'identification ici
-        console.log("Email: ", email);
-        console.log("Password: ", password);
         axios.post("/api/login_check", values,
             {
                 headers: {
@@ -42,21 +38,19 @@ const Login = () => {
             })
             .then(response => {
                 console.log(response);
-                //   console.log(values)
 
                 Cookies.set('token', response.data.token)
 
-                if(Cookies.get("token"))
-                axios.interceptors.request.use(
-                    config => {
-                        config.headers['Authorization'] = `Bearer ${Cookies.get("token")}`;
-                        return config;
-                    },
-                    error => {
-                        return Promise.reject(error);
-                    }
-                );
-
+                if (Cookies.get("token"))
+                    axios.interceptors.request.use(
+                        config => {
+                            config.headers['Authorization'] = `Bearer ${Cookies.get("token")}`;
+                            return config;
+                        },
+                        error => {
+                            return Promise.reject(error);
+                        }
+                    );
                 navigate("/dashboard")
             })
             .catch(error => {
