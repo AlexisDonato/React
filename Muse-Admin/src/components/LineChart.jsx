@@ -1,15 +1,28 @@
 import { ResponsiveLine } from "@nivo/line";
 import { useTheme } from "@mui/material";
 import { tokens } from "../theme";
-import { mockLineData as data } from "../data/mockData";
+import React, { useEffect, useState } from 'react';
+// import { getCarts } from "../data/muse_carts_line";
+import { mockLineData } from "../data/mockData";
+
 
 const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
+  // const [cartsData, setCartsData] = useState([]);
+
+  // useEffect(() => {
+  //     async function fetchData() {
+  //         const data = await getCarts();
+  //         setCartsData(data);
+  //     }
+  //     fetchData();
+  // }, []);
+
   return (
     <ResponsiveLine
-      data={data}
+      data={mockLineData}
       theme={{
         axis: {
           domain: {
