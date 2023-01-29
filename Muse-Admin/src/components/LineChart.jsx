@@ -1,28 +1,39 @@
 import { ResponsiveLine } from "@nivo/line";
 import { useTheme } from "@mui/material";
 import { tokens } from "../theme";
-import React, { useEffect, useState } from 'react';
-// import { getCarts } from "../data/muse_carts_line";
-import { mockLineData } from "../data/mockData";
-
+import Moment from "moment";
+import React, { useEffect, useState } from "react";
+import Carts from "../data/muse_carts";
+// import { mockLineData } from "../data/mockData";
 
 const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  // const [cartsData, setCartsData] = useState([]);
+  const [carts, setCarts] = useState([]);
 
-  // useEffect(() => {
-  //     async function fetchData() {
-  //         const data = await getCarts();
-  //         setCartsData(data);
-  //     }
-  //     fetchData();
-  // }, []);
+  useEffect(() => {
+    Carts().then((data) => setCarts(data));
+  }, []);
+
+  const groupedData = carts
+  .filter(cart => cart.validated)
+  .reduce((groups, cart) => {
+    const group = cart.user.pro ? groups[0] : groups[1];
+    group.data.push({
+      x: Moment(cart.orderDate).format("DD-MM-YYYY"),
+      y: cart.total,
+    });
+    return groups;
+  }, [
+    { id: "Pro", color: tokens("dark").greenAccent[500], data: [] },
+    { id: "Clients", color: tokens("dark").blueAccent[300], data: [] },
+  ]);
 
   return (
     <ResponsiveLine
-      data={mockLineData}
+      data={groupedData}
+      connectNulls={true}
       theme={{
         axis: {
           domain: {
