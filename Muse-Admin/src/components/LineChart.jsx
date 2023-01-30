@@ -16,20 +16,6 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
     Carts().then((data) => setCarts(data));
   }, []);
 
-  // const groupedData = carts
-  // .filter(cart => cart.validated)
-  // .reduce((groups, cart) => {
-  //   const group = cart.user.pro ? groups[0] : groups[1];
-  //   group.data.push({
-  //     x: Moment(cart.orderDate).format("DD-MM-YYYY"),
-  //     y: cart.total,
-  //   });
-  //   return groups;
-  // }, [
-  //   { id: "Pro", color: tokens("dark").greenAccent[500], data: [] },
-  //   { id: "Clients", color: tokens("dark").blueAccent[300], data: [] },
-  // ]);
-
   const proData = carts
   .filter((cart) => cart.validated)
   .map((cart) => ({

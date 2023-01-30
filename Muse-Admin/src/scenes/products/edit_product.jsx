@@ -1,4 +1,5 @@
 import { Box, Button, TextField, Select } from "@mui/material";
+import { MenuItem } from "@material-ui/core";
 
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -64,9 +65,8 @@ const AddNewProduct = () => {
 
     })
       .then(response => {
-        console.log(response);
-        console.log(values)
         navigate("/products")
+        console.log("Values " + values)
       })
       .catch(error => {
         console.log(error)
@@ -75,7 +75,11 @@ const AddNewProduct = () => {
 
 
   const handleInput = (event, setState) => {
-    setState(event.currentTarget.value);
+    console.log("----------------------------------------");
+    console.log(event);
+    console.log(event.target);
+    console.log("----------------------------------------");
+    if (event.target.value != null) {setState(event.target.value)};
   }
 
   const handleFile = (event, setState) => {
@@ -109,7 +113,7 @@ const AddNewProduct = () => {
       setImage(response.data.image);
       setImage1(response.data.image1);
       setImage2(response.data.image2);
-      console.log(response.data);
+      console.log("Products " + response.data);
     })
 
     axios
@@ -119,8 +123,8 @@ const AddNewProduct = () => {
         }
       })
       .then((response) => {
-        console.log(response.data);
         setSupplierOptions(response.data)
+        console.log("SupplierOptions " + response.data);
       });
 
     axios.get("/api/categories", {
@@ -128,8 +132,9 @@ const AddNewProduct = () => {
         "Accept": "application/json"
       }
     })
-      .then(response => {setCategoryOptions(response.data)
-        console.log(response.data);
+      .then(response => {
+        setCategoryOptions(response.data)
+        console.log("CategoryOptions " + response.data);
       });
   }, []);
 
@@ -170,48 +175,40 @@ const AddNewProduct = () => {
             style={{ backgroundColor: '#333333' }}
             sx={{ gridColumn: "span 2", bg: 'grey', borderRadius: '2px' }}
           />
-          <TextField
-            name="Supplier"
-            defaultValue={supplier}
-            SelectProps={{
-              native: true,
-            }}
+
+          <Select
+            name="supplier"
+            value={supplier}
             helperText="Supplier"
+            placeholder={supplier.name}
             style={{ borderRadius: '3px', backgroundColor: '#333333' }}
             sx={{ gridColumn: "span 1" }}
-            select
             onChange={(event) => handleInput(event, setSupplier)}>
             {supplierOptions.map((supplierOption) => (
-              <option
-                selected={supplierOption.name === supplier.name}
-                key={supplierOption.id}
+              <MenuItem
                 value={"/api/suppliers/" + supplierOption.id}
               >
                 {supplierOption.name}
-              </option>
+              </MenuItem>
             ))}
-          </TextField>
-          <TextField
+          </Select>
+          <Select
             name="category"
-            defaultValue={"/api/categories/" + category.id}
-            SelectProps={{
-              native: true,
-            }}
+            value={category}
             helperText="Category"
+            placeholder={category.name}
             style={{ borderRadius: '3px', backgroundColor: '#333333' }}
             sx={{ gridColumn: "span 1" }}
-            select
             onChange={(event) => handleInput(event, setCategory)}>
             {categoryOptions.map((categoryOption) => (
-              <option
-                selected={categoryOption.name === category.name}
-                key={categoryOption.id}
+              <MenuItem
                 value={"/api/categories/" + categoryOption.id}
               >
                 {categoryOption.name}
-              </option>
+              </MenuItem>
             ))}
-          </TextField>
+          </Select>
+
           <TextField
             fullWidth
             variant="filled"
@@ -328,7 +325,7 @@ const AddNewProduct = () => {
           <Button
             onClick={() => window.confirm('Are you sure you wish to delete this item?') ? handleDelete(id) : navigate(0)}
             color="error" variant="contained"
-            >
+          >
             Delete Product
           </Button>
         </Box>

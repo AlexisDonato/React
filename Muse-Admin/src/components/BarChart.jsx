@@ -3,9 +3,18 @@ import { ResponsiveBar } from "@nivo/bar";
 import { tokens } from "../theme";
 import { mockBarData as data } from "../data/mockData";
 
+import React, { useEffect, useState } from "react";
+import Carts from "../data/muse_carts";
+
 const BarChart = ({ isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
+  const [carts, setCarts] = useState([]);
+
+  useEffect(() => {
+    Carts().then((data) => setCarts(data));
+  }, []);
 
   return (
     <ResponsiveBar

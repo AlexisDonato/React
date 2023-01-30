@@ -247,7 +247,7 @@ const AddNewProduct = () => {
 								onChange={(event) => { handleFile(event, setImage, setFileName) }}
 							/>
 						</Button>
-						{image && <img src={URL.createObjectURL(image)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
+						{image && <img alt="" src={URL.createObjectURL(image)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
 					</div>
 
 					<div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "10px" }}>
@@ -264,7 +264,7 @@ const AddNewProduct = () => {
 								onChange={(event) => { handleFile1(event, setImage1, setFileName1) }}
 							/>
 						</Button>
-						{image1 && <img src={URL.createObjectURL(image1)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
+						{image1 && <img alt="" src={URL.createObjectURL(image1)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
 					</div>
 					<div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "10px" }}>
 						<Button
@@ -280,7 +280,7 @@ const AddNewProduct = () => {
 								onChange={(event) => { handleFile2(event, setImage2, setFileName2) }}
 							/>
 						</Button>
-						{image2 && <img src={URL.createObjectURL(image2)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
+						{image2 && <img alt="" src={URL.createObjectURL(image2)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
 					</div>
 
 				</Box>

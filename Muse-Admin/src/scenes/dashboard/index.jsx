@@ -204,7 +204,7 @@ const Dashboard = () => {
             <Box>
               <IconButton>
                 <DownloadOutlinedIcon
-                  sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
+                  sx={{ fontSize: "26px", color: colors.redAccent[600] }}
                 />
               </IconButton>
             </Box>
@@ -227,13 +227,19 @@ const Dashboard = () => {
             colors={colors.grey[100]}
             p="15px"
           >
-            <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
+            <Typography color={colors.grey[100]} variant="h4" fontWeight="600">
               Recent Transactions
+            </Typography>
+            <Typography color={colors.greenAccent[500]} variant="h5" fontWeight="600">
+              (PRO)
+            </Typography>
+            <Typography color={colors.blueAccent[500]} variant="h5" fontWeight="600">
+             (CLIENT)
             </Typography>
             <Box>
               <IconButton>
                 <DownloadOutlinedIcon
-                  sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
+                  sx={{ fontSize: "26px", color: colors.redAccent[600] }}
                 />
               </IconButton>
             </Box>
@@ -252,7 +258,7 @@ const Dashboard = () => {
               >
                 <Box>
                   <Typography
-                    color={colors.greenAccent[500]}
+                    color={cart.user.pro ? colors.greenAccent[500] : colors.blueAccent[500]}
                     variant="h5"
                     fontWeight="600"
                   >
@@ -264,7 +270,7 @@ const Dashboard = () => {
                 </Box>
                 <Box color={colors.grey[100]}>{Moment(cart.orderDate).format('DD-MM-YYYY')}</Box>
                 <Box
-                  backgroundColor={colors.greenAccent[500]}
+                  backgroundColor={cart.user.pro ? colors.greenAccent[500] : colors.blueAccent[500]}
                   p="5px 10px"
                   borderRadius="4px"
                 >
