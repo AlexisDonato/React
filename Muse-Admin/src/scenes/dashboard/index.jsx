@@ -93,7 +93,7 @@ const Dashboard = () => {
         gridAutoRows="140px"
         gap="20px"
       >
-        
+
         {/* ROW 1 */}
         <Box
           gridColumn="span 3"
@@ -106,7 +106,7 @@ const Dashboard = () => {
             title={fr.format(todaySales)}
             subtitle="Today sales"
             progress={todaySales / sumTotal}
-            increase={todaySales / sumTotal + " %"}
+            increase={"+ " + todaySales / sumTotal + " %"}
             icon={
               <QueryStatsIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -125,7 +125,7 @@ const Dashboard = () => {
             title={fr.format(sumTotal)}
             subtitle="Global sales"
             progress={todaySales / sumTotal}
-            increase={todaySales / sumTotal + " %"}
+            increase={"+ " + todaySales / sumTotal + " %"}
             icon={
               <PointOfSaleIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
