@@ -12,11 +12,12 @@ import axios from "axios";
 
 import { useState, useEffect } from "react";
 
-const AddNewProduct = () => {
+const EditProduct = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
   const { id } = useParams();
 
+  const [productId, setProductId] = useState("");
   const [name, setName] = useState("");
   const [supplier, setSupplier] = useState("");
   const [category, setCategory] = useState("");
@@ -48,8 +49,8 @@ const AddNewProduct = () => {
       content: content,
       discountRate: discountRate,
       quantity: parseInt(quantity),
-      supplier: "/api/suppliers/" + supplier.id,
-      category: "/api/categories/" + category.id,
+      supplier: supplier,
+      category: category,
       // image: image,
       // image1: image1,
       // image2: image2,
@@ -62,11 +63,10 @@ const AddNewProduct = () => {
         "Content-Type": "application/json",
         "Accept": "application/json"
       }
-
     })
       .then(response => {
         navigate("/products")
-        console.log("Values " + values)
+        console.log(values)
       })
       .catch(error => {
         console.log(error)
@@ -86,6 +86,20 @@ const AddNewProduct = () => {
     const file = event.currentTarget.files[0];
     setState(file);
     setFileName(file.name);
+    axios.post("/upload/" + id + "/0", file, {
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    })
+      .then(response => {
+        console.log(file)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
+
   }
 
   const handleFile1 = (event, setState, setFileName1) => {
@@ -102,9 +116,10 @@ const AddNewProduct = () => {
   useEffect(() => {
 
     axios.get("/api/products/" + id).then((response) => {
+      setProductId(response.data.id)
       setName(response.data.name);
-      setSupplier(response.data.supplier);
-      setCategory(response.data.category);
+      setSupplier(response.data.supplier['@id']);
+      setCategory(response.data.category['@id']);
       setDiscountRate(response.data.discountRate);
       setPrice(response.data.price);
       setQuantity(response.data.quantity);
@@ -113,7 +128,7 @@ const AddNewProduct = () => {
       setImage(response.data.image);
       setImage1(response.data.image1);
       setImage2(response.data.image2);
-      console.log("Products " + response.data);
+      console.log(response.data);
     })
 
     axios
@@ -124,7 +139,7 @@ const AddNewProduct = () => {
       })
       .then((response) => {
         setSupplierOptions(response.data)
-        console.log("SupplierOptions " + response.data);
+        console.log(response.data);
       });
 
     axios.get("/api/categories", {
@@ -134,7 +149,7 @@ const AddNewProduct = () => {
     })
       .then(response => {
         setCategoryOptions(response.data)
-        console.log("CategoryOptions " + response.data);
+        console.log(response.data);
       });
   }, []);
 
@@ -151,6 +166,7 @@ const AddNewProduct = () => {
       })
       .catch(err => console.log(err))
   };
+
   return (
     <Box m="20px">
       <Header title="EDIT PRODUCT" subtitle="Edit Product" />
@@ -176,10 +192,12 @@ const AddNewProduct = () => {
             sx={{ gridColumn: "span 2", bg: 'grey', borderRadius: '2px' }}
           />
 
-          <Select
+          <TextField
             name="supplier"
             value={supplier}
+            select
             helperText="Supplier"
+            label="Supplier"
             placeholder={supplier.name}
             style={{ borderRadius: '3px', backgroundColor: '#333333' }}
             sx={{ gridColumn: "span 1" }}
@@ -191,23 +209,27 @@ const AddNewProduct = () => {
                 {supplierOption.name}
               </MenuItem>
             ))}
-          </Select>
-          <Select
+          </TextField>
+          <TextField
             name="category"
             value={category}
+            select
             helperText="Category"
+            label="Cayegory"
             placeholder={category.name}
             style={{ borderRadius: '3px', backgroundColor: '#333333' }}
             sx={{ gridColumn: "span 1" }}
             onChange={(event) => handleInput(event, setCategory)}>
             {categoryOptions.map((categoryOption) => (
               <MenuItem
+              key={categoryOption.id}
+              selected={categoryOption.name === category.name}
                 value={"/api/categories/" + categoryOption.id}
               >
                 {categoryOption.name}
               </MenuItem>
             ))}
-          </Select>
+          </TextField>
 
           <TextField
             fullWidth
@@ -359,4 +381,4 @@ const checkoutSchema = yup.object().shape({
   // image2: yup.mixed().required("Required"),
 });
 
-export default AddNewProduct;
+export default EditProduct;
