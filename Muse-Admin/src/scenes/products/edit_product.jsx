@@ -17,7 +17,6 @@ const EditProduct = () => {
 
   const { id } = useParams();
 
-  const [productId, setProductId] = useState("");
   const [name, setName] = useState("");
   const [supplier, setSupplier] = useState("");
   const [category, setCategory] = useState("");
@@ -38,9 +37,11 @@ const EditProduct = () => {
 
   const navigate = useNavigate();
 
+  // HANDLEFORMSUBMIT 
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
+    // VALUES TO PASS IN REQUEST
     const values =
     {
       name: name,
@@ -56,67 +57,72 @@ const EditProduct = () => {
       // image2: image2,
     }
 
-
     console.log(values);
-    axios.put("/api/products/" + id, values, {
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
+
+    try {
+      const response = axios.put("/api/products/" + id, values, {
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+      });
+        // IMAGES UPLOAD
+      if (image) {
+        const formData = new FormData();
+        formData.append("image", image);
+        axios.post("/api/upload/" + id + "/0", formData, {
+          headers: { "Content-Type": "multipart/form-data" }
+        });
       }
-    })
-      .then(response => {
-        navigate("/products")
-        console.log(values)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+      if (image1) {
+        const formData1 = new FormData();
+        formData1.append("image", image);
+        axios.post("/api/upload/" + id + "/1", formData1, {
+          headers: { "Content-Type": "multipart/form-data" }
+        });
+      }
+      if (image2) {
+        const formData2 = new FormData();
+        formData2.append("image", image);
+        axios.post("/api/upload/" + id + "/2", formData2, {
+          headers: { "Content-Type": "multipart/form-data" }
+        });
+      }
+      navigate("/products");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-
+// HANDLEINPUT
   const handleInput = (event, setState) => {
     console.log("----------------------------------------");
     console.log(event);
     console.log(event.target);
     console.log("----------------------------------------");
-    if (event.target.value != null) {setState(event.target.value)};
+    if (event.target.value != null) { setState(event.target.value) };
   }
 
+  // HANDLEFILES ON IMAGES
   const handleFile = (event, setState) => {
     const file = event.currentTarget.files[0];
     setState(file);
     setFileName(file.name);
-    axios.post("/upload/" + id + "/0", file, {
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
-    })
-      .then(response => {
-        console.log(file)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-
-
   }
-
   const handleFile1 = (event, setState, setFileName1) => {
-    const file = event.currentTarget.files[0];
-    setState(file);
-    setFileName1(file.name);
+    const file1 = event.currentTarget.files[0];
+    setState(file1);
+    setFileName1(file1.name);
   }
   const handleFile2 = (event, setState, setFileName2) => {
-    const file = event.currentTarget.files[0];
-    setState(file);
-    setFileName2(file.name);
+    const file2 = event.currentTarget.files[0];
+    setState(file2);
+    setFileName2(file2.name);
   }
 
+  // SETSTATES ON CONST
   useEffect(() => {
-
     axios.get("/api/products/" + id).then((response) => {
-      setProductId(response.data.id)
       setName(response.data.name);
       setSupplier(response.data.supplier['@id']);
       setCategory(response.data.category['@id']);
@@ -128,9 +134,10 @@ const EditProduct = () => {
       setImage(response.data.image);
       setImage1(response.data.image1);
       setImage2(response.data.image2);
-      console.log(response.data);
+      // console.log(response.data);
     })
 
+    // GET SUPPLIERS
     axios
       .get("/api/suppliers", {
         headers: {
@@ -139,9 +146,9 @@ const EditProduct = () => {
       })
       .then((response) => {
         setSupplierOptions(response.data)
-        console.log(response.data);
       });
 
+    // GET CATEGORIES
     axios.get("/api/categories", {
       headers: {
         "Accept": "application/json"
@@ -149,9 +156,38 @@ const EditProduct = () => {
     })
       .then(response => {
         setCategoryOptions(response.data)
-        console.log(response.data);
       });
   }, []);
+
+
+  // IMAGES UPLOAD
+  // axios.post("/api/upload/" + id + "/0", file)
+  //   .then(response => {
+  //     const file = event.currentTarget.files[0];
+  //     setState(file);
+  //     setFileName(file.name);
+  //     console.log(file)
+  //   })
+  //   .catch(error => {
+  //     console.log(error)
+  //   })
+
+  //   axios.post("/api/upload/" + id + "/1", file1)
+  //   .then(response => {
+  //     console.log(file1)
+  //   })
+  //   .catch(error => {
+  //     console.log(error)
+  //   })
+
+  //   axios.post("/api/upload/" + id + "/2", file2)
+  //   .then(response => {
+  //     console.log(file2)
+  //   })
+  //   .catch(error => {
+  //     console.log(error)
+  //   })
+
 
   const handleDelete = (id) => {
     axios.delete(`/api/products/` + id, {
@@ -222,8 +258,8 @@ const EditProduct = () => {
             onChange={(event) => handleInput(event, setCategory)}>
             {categoryOptions.map((categoryOption) => (
               <MenuItem
-              key={categoryOption.id}
-              selected={categoryOption.name === category.name}
+                key={categoryOption.id}
+                selected={categoryOption.name === category.name}
                 value={"/api/categories/" + categoryOption.id}
               >
                 {categoryOption.name}

@@ -42,7 +42,7 @@ function App() {
   },
   error => {
     if(error.response.data.code === 401 || error.response.data.code === 403 ) {
-      window.alert('Unauthorized !');
+      // document.ElementsByTagName('body').innerHTML=error.response.data.message;
       navigate("/");
     }
   })
