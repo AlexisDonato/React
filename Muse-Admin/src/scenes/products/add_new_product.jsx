@@ -1,6 +1,6 @@
 import { Box, Button, TextField } from "@mui/material";
 
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import * as yup from "yup";
 
@@ -14,6 +14,8 @@ import { useState, useEffect } from "react";
 
 const AddNewProduct = () => {
 	const isNonMobile = useMediaQuery("(min-width:600px)");
+
+	const { id } = useParams();
 
 	const [name, setName] = useState("");
 	const [supplier, setSupplier] = useState("");
@@ -46,31 +48,46 @@ const AddNewProduct = () => {
 			content: content,
 			discountRate: discountRate,
 			quantity: parseInt(quantity),
-			// image: image,
-			// image1: image1,
-			// image2: image2,
 			supplier: supplier,
 			category: category,
 		}
 
-
 		console.log(values);
-		axios.post("/api/products", values, {
-			headers: {
-				"Content-Type": "application/json",
-				"Accept": "application/json"
-			}
-		})
-			.then(response => {
-				console.log(response);
-				console.log(values)
-				navigate("/products")
-			})
-			.catch(error => {
-				console.log(error)
-			})
-	};
 
+		try {
+			const response = axios.post("/api/products", values, {
+				headers: {
+					"Content-Type": "application/json",
+					"Accept": "application/json"
+				}
+			});
+			// IMAGES UPLOAD
+			if (image) {
+				const formData = new FormData();
+				formData.append("image", image);
+				axios.post("/api/upload/" + id + "/0", formData, {
+					headers: { "Content-Type": "multipart/form-data" }
+				});
+			}
+			if (image1) {
+				const formData1 = new FormData();
+				formData1.append("image", image1);
+				axios.post("/api/upload/" + id + "/1", formData1, {
+					headers: { "Content-Type": "multipart/form-data" }
+				});
+			}
+			if (image2) {
+				const formData2 = new FormData();
+				formData2.append("image", image2);
+				axios.post("/api/upload/" + id + "/2", formData2, {
+					headers: { "Content-Type": "multipart/form-data" }
+				});
+			}
+			navigate("/products");
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	const handleInput = (event, setState) => {
 		setState(event.currentTarget.value);
@@ -247,7 +264,16 @@ const AddNewProduct = () => {
 								onChange={(event) => { handleFile(event, setImage, setFileName) }}
 							/>
 						</Button>
-						{image && <img alt="" src={URL.createObjectURL(image)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
+						{image && <img alt="" title={fileName} src={
+							typeof URL.createObjectURL === 'function'
+								? URL.createObjectURL(new Blob([image], { type: image }))
+								: `https://localhost:8000/public/img/${fileName}.jpg`
+						}
+							// onError={(e) => {
+							//   e.target.onerror = null;
+							//   e.target.src = `https://localhost:8000/public/img/${fileName}`;
+							// }} 
+							style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
 					</div>
 
 					<div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "10px" }}>
@@ -264,7 +290,16 @@ const AddNewProduct = () => {
 								onChange={(event) => { handleFile1(event, setImage1, setFileName1) }}
 							/>
 						</Button>
-						{image1 && <img alt="" src={URL.createObjectURL(image1)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
+						{image1 && <img alt="" title={fileName1} src={
+							typeof URL.createObjectURL === 'function'
+								? URL.createObjectURL(new Blob([image1], { type: image1 }))
+								: `https://localhost:8000/public/img/${fileName1}.jpg`
+						}
+							//  onError={(e) => {
+							//   e.target.onerror = null;
+							//   e.target.src = `https://localhost:8000/public/img/${fileName1}`;
+							// }} 
+							style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
 					</div>
 					<div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "10px" }}>
 						<Button
@@ -280,7 +315,16 @@ const AddNewProduct = () => {
 								onChange={(event) => { handleFile2(event, setImage2, setFileName2) }}
 							/>
 						</Button>
-						{image2 && <img alt="" src={URL.createObjectURL(image2)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
+						{image2 && <img alt="" title={fileName2} src={
+							typeof URL.createObjectURL === 'function'
+								? URL.createObjectURL(new Blob([image2], { type: image2 }))
+								: `https://localhost:8000/public/img/${fileName2}`
+						}
+							//   onError={(e) => {
+							//     e.target.onerror = null;
+							//     e.target.src = `https://localhost:8000/public/img/${fileName2}`;
+							//   }} 
+							style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
 					</div>
 
 				</Box>

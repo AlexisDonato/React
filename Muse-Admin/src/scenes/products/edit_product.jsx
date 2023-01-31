@@ -52,9 +52,6 @@ const EditProduct = () => {
       quantity: parseInt(quantity),
       supplier: supplier,
       category: category,
-      // image: image,
-      // image1: image1,
-      // image2: image2,
     }
 
     console.log(values);
@@ -156,36 +153,6 @@ const EditProduct = () => {
         setCategoryOptions(response.data)
       });
   }, []);
-
-
-  // IMAGES UPLOAD
-  // axios.post("/api/upload/" + id + "/0", file)
-  //   .then(response => {
-  //     const file = event.currentTarget.files[0];
-  //     setState(file);
-  //     setFileName(file.name);
-  //     console.log(file)
-  //   })
-  //   .catch(error => {
-  //     console.log(error)
-  //   })
-
-  //   axios.post("/api/upload/" + id + "/1", file1)
-  //   .then(response => {
-  //     console.log(file1)
-  //   })
-  //   .catch(error => {
-  //     console.log(error)
-  //   })
-
-  //   axios.post("/api/upload/" + id + "/2", file2)
-  //   .then(response => {
-  //     console.log(file2)
-  //   })
-  //   .catch(error => {
-  //     console.log(error)
-  //   })
-
 
   const handleDelete = (id) => {
     axios.delete(`/api/products/` + id, {
