@@ -66,7 +66,8 @@ const EditProduct = () => {
           "Accept": "application/json"
         },
       });
-        // IMAGES UPLOAD
+
+      // IMAGES UPLOAD
       if (image) {
         const formData = new FormData();
         formData.append("image", image);
@@ -76,14 +77,14 @@ const EditProduct = () => {
       }
       if (image1) {
         const formData1 = new FormData();
-        formData1.append("image", image);
+        formData1.append("image", image1);
         axios.post("/api/upload/" + id + "/1", formData1, {
           headers: { "Content-Type": "multipart/form-data" }
         });
       }
       if (image2) {
         const formData2 = new FormData();
-        formData2.append("image", image);
+        formData2.append("image", image2);
         axios.post("/api/upload/" + id + "/2", formData2, {
           headers: { "Content-Type": "multipart/form-data" }
         });
@@ -94,7 +95,7 @@ const EditProduct = () => {
     }
   };
 
-// HANDLEINPUT
+  // HANDLEINPUT
   const handleInput = (event, setState) => {
     console.log("----------------------------------------");
     console.log(event);
@@ -131,9 +132,6 @@ const EditProduct = () => {
       setQuantity(response.data.quantity);
       setDescription(response.data.description);
       setContent(response.data.content);
-      setImage(response.data.image);
-      setImage1(response.data.image1);
-      setImage2(response.data.image2);
       // console.log(response.data);
     })
 
@@ -336,7 +334,16 @@ const EditProduct = () => {
                 onChange={(event) => { handleFile(event, setImage, setFileName) }}
               />
             </Button>
-            {image && <img alt="" title={fileName} src={URL.createObjectURL(image)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
+            {image && <img alt="" title={fileName} src={
+              typeof URL.createObjectURL === 'function'
+                ? URL.createObjectURL(new Blob([image], { type: image }))
+                : `https://localhost:8000/public/img/${fileName}.jpg`
+            }
+              // onError={(e) => {
+              //   e.target.onerror = null;
+              //   e.target.src = `https://localhost:8000/public/img/${fileName}`;
+              // }} 
+              style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "10px" }}>
@@ -353,7 +360,16 @@ const EditProduct = () => {
                 onChange={(event) => { handleFile1(event, setImage1, setFileName1) }}
               />
             </Button>
-            {image1 && <img alt="" title={fileName1} src={URL.createObjectURL(image1)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
+            {image1 && <img alt="" title={fileName1} src={
+              typeof URL.createObjectURL === 'function'
+                ? URL.createObjectURL(new Blob([image1], { type: image1 }))
+                : `https://localhost:8000/public/img/${fileName1}.jpg`
+            }
+              //  onError={(e) => {
+              //   e.target.onerror = null;
+              //   e.target.src = `https://localhost:8000/public/img/${fileName1}`;
+              // }} 
+              style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
           </div>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "10px" }}>
             <Button
@@ -369,7 +385,16 @@ const EditProduct = () => {
                 onChange={(event) => { handleFile2(event, setImage2, setFileName2) }}
               />
             </Button>
-            {image2 && <img alt="" title={fileName2} src={URL.createObjectURL(image2)} style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
+            {image2 && <img alt="" title={fileName2} src={
+              typeof URL.createObjectURL === 'function'
+                ? URL.createObjectURL(new Blob([image2], { type: image2 }))
+                : `https://localhost:8000/public/img/${fileName2}`
+            }
+            //   onError={(e) => {
+            //     e.target.onerror = null;
+            //     e.target.src = `https://localhost:8000/public/img/${fileName2}`;
+            //   }} 
+              style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
           </div>
         </Box>
       </form>
