@@ -11,6 +11,8 @@ export const mockBarData = [
     Item3Color: "hsl(97, 70%, 50%)",
     Item4: 140,
     Item4Color: "hsl(340, 70%, 50%)",
+    Item5: 170,
+    Item5Color: "hsl(118, 70%, 50%)",
   },
   {
     country: "AE",
@@ -33,6 +35,8 @@ export const mockBarData = [
     Item3Color: "hsl(106, 70%, 50%)",
     Item4: 152,
     Item4Color: "hsl(256, 70%, 50%)",
+    Item5: 70,
+    Item5Color: "hsl(118, 70%, 50%)",
   },
   {
     country: "AG",
@@ -66,6 +70,10 @@ export const mockBarData = [
     Item3Color: "hsl(182, 70%, 50%)",
     Item4: 18,
     Item4Color: "hsl(76, 70%, 50%)",
+    Item5: 70,
+    Item5Color: "hsl(118, 70%, 50%)",
+    Item6: 70,
+    Item6Color: "hsl(188, 70%, 50%)",
   },
   {
     country: "AM",
