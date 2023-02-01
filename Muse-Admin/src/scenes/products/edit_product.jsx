@@ -306,10 +306,6 @@ const EditProduct = () => {
                 ? URL.createObjectURL(new Blob([image], { type: image }))
                 : `https://localhost:8000/public/img/${fileName}.jpg`
             }
-              // onError={(e) => {
-              //   e.target.onerror = null;
-              //   e.target.src = `https://localhost:8000/public/img/${fileName}`;
-              // }} 
               style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
           </div>
 
@@ -331,11 +327,7 @@ const EditProduct = () => {
               typeof URL.createObjectURL === 'function'
                 ? URL.createObjectURL(new Blob([image1], { type: image1 }))
                 : `https://localhost:8000/public/img/${fileName1}.jpg`
-            }
-              //  onError={(e) => {
-              //   e.target.onerror = null;
-              //   e.target.src = `https://localhost:8000/public/img/${fileName1}`;
-              // }} 
+            } 
               style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
           </div>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "10px" }}>
@@ -357,10 +349,6 @@ const EditProduct = () => {
                 ? URL.createObjectURL(new Blob([image2], { type: image2 }))
                 : `https://localhost:8000/public/img/${fileName2}`
             }
-            //   onError={(e) => {
-            //     e.target.onerror = null;
-            //     e.target.src = `https://localhost:8000/public/img/${fileName2}`;
-            //   }} 
               style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
           </div>
         </Box>

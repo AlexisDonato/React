@@ -67,7 +67,7 @@ const AddressesIndex = () => {
       field: "pathType",
       headerName: "Path Type",
       editable: true, 
-      flex: 1
+      flex: 10
     },
     {
       field: "billingAddress",
