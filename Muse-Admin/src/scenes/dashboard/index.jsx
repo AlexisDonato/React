@@ -230,12 +230,14 @@ const Dashboard = () => {
             <Typography color={colors.grey[100]} variant="h4" fontWeight="600">
               Recent Transactions
             </Typography>
+            <div>
             <Typography color={colors.greenAccent[500]} variant="h5" fontWeight="600">
               (PRO)
             </Typography>
             <Typography color={colors.blueAccent[500]} variant="h5" fontWeight="600">
              (CLIENT)
             </Typography>
+            </div>
             <Box>
               <IconButton>
                 <DownloadOutlinedIcon

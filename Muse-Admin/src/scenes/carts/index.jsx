@@ -58,8 +58,6 @@ const CartsIndex = () => {
           ))}
         </ul>
       ),
-      // headerAlign: "left",
-      // align: "left",
     },
     {
       field: "orderDate",

@@ -57,6 +57,8 @@ const EditProduct = () => {
     console.log(values);
 
     try {
+      // validationSchema.validate(values, { abortEarly: false });
+
       const response = axios.put("/api/products/" + id, values, {
         headers: {
           "Content-Type": "application/json",
@@ -382,9 +384,11 @@ const EditProduct = () => {
 const phoneRegExp =
   /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 const nameRegExp = /^[A-Za-z]$/
-const checkoutSchema = yup.object().shape({
+
+const validationSchema = yup.object().shape({
   name: yup.string().matches(nameRegExp, "Name is not valid").required("Name required"),
   supplier: yup.string().required("Required"),
+  category: yup.string().required("La catégorie est requise"),
   price: yup.string().required("Required"),
   description: yup
     .string()
@@ -392,6 +396,18 @@ const checkoutSchema = yup.object().shape({
     .required("Required"),
   content: yup.string().required("Required"),
   quantity: yup.string().required("Required"),
+  discountRate: yup
+  .number()
+  .required("Le taux de remise est requis")
+  .positive("Le taux de remise doit être positif"),
+price: yup
+  .number()
+  .required("Le prix est requis")
+  .positive("Le prix doit être positif"),
+quantity: yup
+  .number()
+  .required("La quantité est requise")
+  .positive("La quantité doit être positive"),
   // image: yup.mixed().required("Required"),
   // image1: yup.mixed().required("Required"),
   // image2: yup.mixed().required("Required"),

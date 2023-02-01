@@ -10,10 +10,31 @@ const BarChart = ({ isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  const [carts, setCarts] = useState([]);
+  // const [carts, setCarts] = useState([]);
+
+  // useEffect(() => {
+  //   Carts().then((data) => setCarts(data));
+  // }, []);
+
+  const [barData, setBarData] = useState([]);
 
   useEffect(() => {
-    Carts().then((data) => setCarts(data));
+    Carts().then((data) => {
+      let barData = [];
+      // format the data for the bar chart
+      data.forEach(item => {
+        barData.push({
+          // country: item?.user?.address?.country,
+          // hotdog: item?.orderDetails?.quantity,
+          // burger: item?.orderDetails?.burger,
+          // sandwich: item?.orderDetails?.sandwich,
+          // kebab: item?.orderDetails?.kebab,
+          // fries: item?.orderDetails?.fries,
+          // donut: item?.orderDetails?.donut,
+        });
+      });
+      setBarData(barData);
+    });
   }, []);
 
   return (
@@ -48,7 +69,7 @@ const BarChart = ({ isDashboard = false }) => {
           },
         },
       }}
-      keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
+      keys={["Item1", "Item2", "Item3", "Item4", "Item5", "Item6"]}
       indexBy="country"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}
