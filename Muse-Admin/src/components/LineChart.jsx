@@ -21,14 +21,16 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
   .map((cart) => ({
     x: Moment(cart.orderDate).format("DD-MM-YYYY"),
     y: cart.total,
-  }));
+  }))
+  .slice(-20);
 
 const clientData = carts
   .filter((cart) => cart.validated && !cart.user.pro)
   .map((cart) => ({
     x: Moment(cart.orderDate).format("DD-MM-YYYY"),
     y: cart.total,
-  }));
+  }))
+  .slice(-20);
 
 const groupedData = [
   {

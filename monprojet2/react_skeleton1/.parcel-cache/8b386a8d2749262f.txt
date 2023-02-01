@@ -1,8 +1,0 @@
-7
-71/home/alex/Bureau/React/React/monprojet2/react_skeleton1/src/index.html1673254087112088638 0
-69/home/alex/Bureau/React/React/monprojet2/react_skeleton1/src/index.js1673256049704129968 0
-68/home/alex/Bureau/React/React/monprojet2/react_skeleton1/src/App.jsx1673254087112088638 0
-60/home/alex/Bureau/React/React/monprojet2/react_skeleton1/src1673254087112088638 1
-66/home/alex/Bureau/React/React/monprojet2/react_skeleton1/yarn.lock1673254087112088638 0
-69/home/alex/Bureau/React/React/monprojet2/react_skeleton1/package.json1673254087112088638 0
-56/home/alex/Bureau/React/React/monprojet2/react_skeleton11673255810740124936 1
