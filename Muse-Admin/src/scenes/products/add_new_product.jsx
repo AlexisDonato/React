@@ -60,30 +60,32 @@ const AddNewProduct = () => {
 					"Content-Type": "application/json",
 					"Accept": "application/json"
 				}
+			}).then((response)=>{
+				let id = response.data.id;
+				// IMAGES UPLOAD
+				if (image) {
+					const formData = new FormData();
+					formData.append("image", image);
+					axios.post("/api/upload/" + id + "/0", formData, {
+						headers: { "Content-Type": "multipart/form-data" }
+					});
+				}
+				if (image1) {
+					const formData1 = new FormData();
+					formData1.append("image", image1);
+					axios.post("/api/upload/" + id + "/1", formData1, {
+						headers: { "Content-Type": "multipart/form-data" }
+					});
+				}
+				if (image2) {
+					const formData2 = new FormData();
+					formData2.append("image", image2);
+					axios.post("/api/upload/" + id + "/2", formData2, {
+						headers: { "Content-Type": "multipart/form-data" }
+					});
+				}
+				navigate("/products");
 			});
-			// IMAGES UPLOAD
-			if (image) {
-				const formData = new FormData();
-				formData.append("image", image);
-				axios.post("/api/upload/" + id + "/0", formData, {
-					headers: { "Content-Type": "multipart/form-data" }
-				});
-			}
-			if (image1) {
-				const formData1 = new FormData();
-				formData1.append("image", image1);
-				axios.post("/api/upload/" + id + "/1", formData1, {
-					headers: { "Content-Type": "multipart/form-data" }
-				});
-			}
-			if (image2) {
-				const formData2 = new FormData();
-				formData2.append("image", image2);
-				axios.post("/api/upload/" + id + "/2", formData2, {
-					headers: { "Content-Type": "multipart/form-data" }
-				});
-			}
-			navigate("/products");
 		} catch (error) {
 			console.log(error);
 		}
@@ -264,7 +266,7 @@ const AddNewProduct = () => {
 						{image && <img alt="" title={fileName} src={
 							typeof URL.createObjectURL === 'function'
 								? URL.createObjectURL(new Blob([image], { type: image }))
-								: `https://localhost:8000/public/img/${fileName}.jpg`
+								: `https://localhost:8000/img/${fileName}.jpg`
 						}
 							style={{ width: '200px', height: '200px', objectFit: 'cover', display: "inline-block", margin: "10px" }} />}
 					</div>
