@@ -1,5 +1,8 @@
 import axios from "axios";
 
+// Bypasses the SSL certificate query
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 const Calculations = () => {
     return new Promise((resolve, reject) => {
         let data = {

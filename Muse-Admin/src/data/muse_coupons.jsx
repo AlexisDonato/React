@@ -1,5 +1,8 @@
 import axios from "axios";
 
+// Bypasses the SSL certificate query
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 export default async function Coupons() {
   // With function 'fetch'
   // const coupons = (await (await fetch("https://127.0.0.1:8000/api/coupons")).json())["hydra:member"];

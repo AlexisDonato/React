@@ -1,5 +1,8 @@
 import axios from "axios";
 
+// Bypasses the SSL certificate query
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 export default async function Addresses() {
   // With function 'fetch'
   // const addresses = (await (await fetch("https://127.0.0.1:8000/api/addresses")).json())["hydra:member"];
