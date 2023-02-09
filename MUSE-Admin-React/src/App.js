@@ -77,7 +77,7 @@ function App() {
               <Route path="/carts" element={<Carts />} />
               <Route path="/coupons" element={<Coupons />} />
 
-              <Route path="/form" element={<Form />} />
+              {/* <Route path="/form" element={<Form />} /> */}
               <Route path="/bar" element={<Bar />} />
               <Route path="/pie" element={<Pie />} />
               <Route path="/line" element={<Line />} />

@@ -37,7 +37,7 @@ const AddNewProduct = () => {
 
 	const navigate = useNavigate();
 
-	const handleFormSubmit = (event) => {
+	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 
 		const values =
@@ -55,12 +55,22 @@ const AddNewProduct = () => {
 		console.log(values);
 
 		try {
+			await validationSchema.validate({
+				name,
+				supplier,
+				category,
+				discountRate,
+				price,
+				quantity,
+				description,
+				content
+			});
 			const response = axios.post("/api/products", values, {
 				headers: {
 					"Content-Type": "application/json",
 					"Accept": "application/json"
 				}
-			}).then((response)=>{
+			}).then((response) => {
 				let id = response.data.id;
 				// IMAGES UPLOAD
 				if (image) {
