@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import Carts from "../data/muse_carts";
 // import { mockLineData } from "../data/mockData";
 
-const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
+const LineChart = ({  isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
