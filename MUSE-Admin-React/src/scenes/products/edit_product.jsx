@@ -1,9 +1,9 @@
-import { Box, Button, TextField, Select } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { MenuItem } from "@material-ui/core";
 
 import { useParams, useNavigate } from 'react-router-dom';
 
-import * as yup from "yup";
+// import * as yup from "yup";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
@@ -381,36 +381,34 @@ const EditProduct = () => {
   );
 };
 
-const phoneRegExp =
-  /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
-const nameRegExp = /^[A-Za-z]$/
+// const phoneRegExp =
+//   /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
+// const nameRegExp = /^[A-Za-z]$/
 
-const validationSchema = yup.object().shape({
-  name: yup.string().matches(nameRegExp, "Name is not valid").required("Name required"),
-  supplier: yup.string().required("Required"),
-  category: yup.string().required("La catégorie est requise"),
-  price: yup.string().required("Required"),
-  description: yup
-    .string()
-    // .matches(phoneRegExp, "Phone number is not valid")
-    .required("Required"),
-  content: yup.string().required("Required"),
-  quantity: yup.string().required("Required"),
-  discountRate: yup
-  .number()
-  .required("Le taux de remise est requis")
-  .positive("Le taux de remise doit être positif"),
-price: yup
-  .number()
-  .required("Le prix est requis")
-  .positive("Le prix doit être positif"),
-quantity: yup
-  .number()
-  .required("La quantité est requise")
-  .positive("La quantité doit être positive"),
-  // image: yup.mixed().required("Required"),
-  // image1: yup.mixed().required("Required"),
-  // image2: yup.mixed().required("Required"),
-});
+// const validationSchema = yup.object().shape({
+//   name: yup.string().matches(nameRegExp, "Name is not valid").required("Name required"),
+//   supplier: yup.string().required("Required"),
+//   category: yup.string().required("La catégorie est requise"),
+//   description: yup
+//     .string()
+//     .matches(phoneRegExp, "Phone number is not valid")
+//     .required("Required"),
+//   content: yup.string().required("Required"),
+//   discountRate: yup
+//   .number()
+//   .required("Le taux de remise est requis")
+//   .positive("Le taux de remise doit être positif"),
+// price: yup
+//   .number()
+//   .required("Le prix est requis")
+//   .positive("Le prix doit être positif"),
+// quantity: yup
+//   .number()
+//   .required("La quantité est requise")
+//   .positive("La quantité doit être positive"),
+//   image: yup.mixed().required("Required"),
+//   image1: yup.mixed().required("Required"),
+//   image2: yup.mixed().required("Required"),
+// });
 
 export default EditProduct;

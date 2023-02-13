@@ -1,6 +1,6 @@
 import { Box, Button, TextField } from "@mui/material";
 
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import * as yup from "yup";
 
@@ -14,8 +14,6 @@ import { useState, useEffect } from "react";
 
 const AddNewProduct = () => {
 	const isNonMobile = useMediaQuery("(min-width:600px)");
-
-	const { id } = useParams();
 
 	const [name, setName] = useState("");
 	const [supplier, setSupplier] = useState("");

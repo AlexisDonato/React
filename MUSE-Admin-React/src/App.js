@@ -20,7 +20,7 @@ import Carts from "./scenes/carts";
 import Coupons from "./scenes/coupons";
 
 import Bar from "./scenes/bar";
-import Form from "./scenes/form";
+// import Form from "./scenes/form";
 import Line from "./scenes/line";
 import Pie from "./scenes/pie";
 import FAQ from "./scenes/faq";
@@ -37,16 +37,20 @@ function App() {
   const [isSidebar, setIsSidebar] = useState(true);
   const navigate = useNavigate();
 
-  axios.interceptors.response.use(response => {
-    return response
-  },
-  error => {
-    if(error.response.data.code === 401 || error.response.data.code === 403 ) {
-      // document.ElementsByTagName('body').innerHTML=error.response.data.message;
-      navigate("/");
-    }
-  })
-  
+  // Intercept the axios response to check if the response code is 401 or 403
+  axios.interceptors.response.use
+    // Return the response if the response code is not 401 or 403
+    (response => {
+      return response
+    },
+      // If the response code is 401 or 403, navigate to the login page
+      error => {
+        if (error.response.data.code === 401 || error.response.data.code === 403) {
+          // document.ElementsByTagName('body').innerHTML=error.response.data.message;
+          navigate("/");
+        }
+      })
+
 
   return (
     <ColorModeContext.Provider value={colorMode}>

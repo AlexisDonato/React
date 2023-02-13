@@ -25,19 +25,19 @@ const Dashboard = () => {
 
   const [todaySales, setTodaySales] = useState(0)
   const [sumTotal, setSumTotal] = useState(0);
-  const [sumVal, setSumVal] = useState(0);
-  const [pro, setPro] = useState(0);
   const [sumPro, setSumPro] = useState(0);
   const [sumClient, setSumClient] = useState(0);
-  const [todate, setTodate] = useState(new Date());
-  const [sumQuant, setSumQuant] = useState(0);
-  const [sumProd, setSumProd] = useState(0);
-  const [sumShip, setSumShip] = useState(0);
-  const [users, setUsers] = useState(0);
+  // const [sumVal, setSumVal] = useState(0);
+  // const [pro, setPro] = useState(0);
+  // const [todate, setTodate] = useState(new Date());
+  // const [sumQuant, setSumQuant] = useState(0);
+  // const [sumProd, setSumProd] = useState(0);
+  // const [sumShip, setSumShip] = useState(0);
+  // const [users, setUsers] = useState(0);
 
   const [carts, setCarts] = useState([]);
 
-  console.log(carts);
+  // console.log(carts);
 
   let fr = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
 
@@ -46,15 +46,15 @@ const Dashboard = () => {
       .then(val => {
         setTodaySales(val.todaySales)
         setSumTotal(val.sumTotal.toFixed(2))
-        setSumVal(val.sumVal)
-        setPro(val.pro)
         setSumPro(val.sumPro.toFixed(2))
         setSumClient(val.sumClient.toFixed(2))
-        setTodate(val.todate)
-        setSumQuant(val.sumQuant)
-        setSumProd(val.sumProd)
-        setSumShip(val.sumShip)
-        setUsers(val.users)
+        // setSumVal(val.sumVal)
+        // setPro(val.pro)
+        // setTodate(val.todate)
+        // setSumQuant(val.sumQuant)
+        // setSumProd(val.sumProd)
+        // setSumShip(val.sumShip)
+        // setUsers(val.users)
       })
   }, [])
 

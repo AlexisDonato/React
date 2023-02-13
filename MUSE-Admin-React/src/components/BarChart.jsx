@@ -3,8 +3,8 @@ import { ResponsiveBar } from "@nivo/bar";
 import { tokens } from "../theme";
 import { mockBarData as data } from "../data/mockData";
 
-import React, { useEffect, useState } from "react";
-import Carts from "../data/muse_carts";
+// import React, { useEffect, useState } from "react";
+// import Carts from "../data/muse_carts";
 
 const BarChart = ({ isDashboard = false }) => {
   const theme = useTheme();
@@ -16,26 +16,26 @@ const BarChart = ({ isDashboard = false }) => {
   //   Carts().then((data) => setCarts(data));
   // }, []);
 
-  const [barData, setBarData] = useState([]);
+  // const [barData, setBarData] = useState([]);
 
-  useEffect(() => {
-    Carts().then((data) => {
-      let barData = [];
-      // format the data for the bar chart
-      data.forEach(item => {
-        barData.push({
-          // country: item?.user?.address?.country,
-          // hotdog: item?.orderDetails?.quantity,
-          // burger: item?.orderDetails?.burger,
-          // sandwich: item?.orderDetails?.sandwich,
-          // kebab: item?.orderDetails?.kebab,
-          // fries: item?.orderDetails?.fries,
-          // donut: item?.orderDetails?.donut,
-        });
-      });
-      setBarData(barData);
-    });
-  }, []);
+  // useEffect(() => {
+  //   Carts().then((data) => {
+  //     let barData = [];
+  //     // format the data for the bar chart
+  //     data.forEach(item => {
+  //       barData.push({
+  //         country: item?.user?.address?.country,
+  //         hotdog: item?.orderDetails?.quantity,
+  //         burger: item?.orderDetails?.burger,
+  //         sandwich: item?.orderDetails?.sandwich,
+  //         kebab: item?.orderDetails?.kebab,
+  //         fries: item?.orderDetails?.fries,
+  //         donut: item?.orderDetails?.donut,
+  //       });
+  //     });
+  //     setBarData(barData);
+  //   });
+  // }, []);
 
   return (
     <ResponsiveBar

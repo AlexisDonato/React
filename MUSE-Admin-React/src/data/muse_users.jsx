@@ -4,18 +4,13 @@ import axios from "axios";
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 export default async function Users() {
-  // With function 'fetch'
-  // const users = (await (await fetch("https://127.0.0.1:8000/api/users")).json())["hydra:member"];
-  // console.log(users);
-
-  // With 'axios' ("proxy" : "http://localhost:8000" is needed to be written in 'package.json)
   const users = (
     await axios.get("/api/users", {
       headers: {
         "Accept": "application/json"
       }
     })).data;
-    console.log(users);
+    // console.log(users);
   return (
     users.map((item) => (
       {

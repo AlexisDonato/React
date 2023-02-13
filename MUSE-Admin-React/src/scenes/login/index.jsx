@@ -5,20 +5,25 @@ import axios from "axios";
 import Cookies from 'js-cookie'
 
 const Login = () => {
+    // State to store the value of the email field
     const [email, setEmail] = useState("");
+    // State to store the value of the password field
     const [password, setPassword] = useState("");
 
-
+    // Function for navigating to a different page
     const navigate = useNavigate();
 
+    // Function to handle changes in the email field
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     }
 
+    // Function to handle changes in the password field
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
     }
 
+    // Object to store the values of email and password
     const values =
     {
         "username": email,
@@ -27,7 +32,9 @@ const Login = () => {
 
 
     const handleSubmit = (event) => {
+        // Prevent the default behavior of the submit event
         event.preventDefault();
+        // Send a POST request to the specified URL with the values object as its body
         axios.post("/api/login_check", values,
             {
                 headers: {
@@ -38,10 +45,11 @@ const Login = () => {
             })
             .then(response => {
                 console.log(response);
-
+                // Store the token returned from the server in a cookie
                 Cookies.set('token', response.data.token)
-
+                // Check if the cookie has been set successfully
                 if (Cookies.get("token"))
+                    // Add the token to the header of every axios request
                     axios.interceptors.request.use(
                         config => {
                             config.headers['Authorization'] = `Bearer ${Cookies.get("token")}`;
@@ -51,6 +59,7 @@ const Login = () => {
                             return Promise.reject(error);
                         }
                     );
+                // Navigate to the "/dashboard" page
                 navigate("/dashboard")
             })
             .catch(error => {
