@@ -101,7 +101,7 @@ const groupedData = [
         tickSize: 0,
         tickPadding: 5,
         tickRotation: 0,
-        legend: isDashboard ? undefined : "transportation", // added
+        legend: isDashboard ? undefined : "Date", // added
         legendOffset: 36,
         legendPosition: "middle",
       }}
@@ -111,7 +111,7 @@ const groupedData = [
         tickSize: 3,
         tickPadding: 5,
         tickRotation: 0,
-        legend: isDashboard ? undefined : "count", // added
+        legend: isDashboard ? undefined : "Sales", // added
         legendOffset: -40,
         legendPosition: "middle",
       }}
